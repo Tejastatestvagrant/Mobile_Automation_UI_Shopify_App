@@ -1,0 +1,4 @@
+/**
+ * @group Sanity
+ */
+export {};
