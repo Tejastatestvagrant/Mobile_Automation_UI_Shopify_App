@@ -1,7 +1,7 @@
 import { Element } from 'webdriverio';
 import { BaseScreen, XpathUtil } from '../../../../uiExport';
 
-export class LoginScreen extends BaseScreen {
+export class ProfileScreen extends BaseScreen {
   private selectors = {
     backButton: { android: "//*[@content-desc='backButton']", ios: "//*[@name='backButton']" },
     welcomeText: { android: "//*[@content-desc='welcomeText']", ios: "//*[@name='welcomeText']" },

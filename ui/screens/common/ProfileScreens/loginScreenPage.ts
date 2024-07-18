@@ -3,7 +3,7 @@ import { BaseScreen, XpathUtil } from '../../../../uiExport';
 
 export class LoginScreen extends BaseScreen {
   private selectors = {
-    usernameText: { android: "//*[@text='Email']", ios: "//*[@name='test-Username']" },
+    usernameText: { android: "//*[@text='Email']", ios: '~' },
     passwordText: { android: "//*[@text='Password']", ios: "//*[@name='test-Password']" },
     loginButton: { android: "//*[@text='Login']", ios: "//*[@name='test-LOGIN']" },
     forgotPasswordLink: { android: "//*[@text='Forgot Password?']", ios: 'TODO: Implement iOS locator for Forgot Password Link' },
