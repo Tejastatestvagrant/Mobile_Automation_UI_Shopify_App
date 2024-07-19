@@ -5,7 +5,7 @@
 import { Browser } from 'webdriverio';
 import { expect } from 'chai';
 import {
-  Driver, ProfileScreen,
+  Driver, ProfileScreenAction,
 } from '../../../../uiExport';
 import { HomeScreenUiValidationAction } from '../../../screens/userActions/HomeScreenActions/homeScreenUiValidationAction';
 // import { OtpVerificationScreen } from '../../../screens/common/ProfileScreens/otpScreen';
@@ -15,9 +15,7 @@ import { HomeScreenUiValidationAction } from '../../../screens/userActions/HomeS
 let driver: Browser<'async'>;
 // let loginActions: LoginScreenActions;
 let homeScreen : HomeScreenUiValidationAction;
-let profileScreen : ProfileScreen;
-// let registerScreen : RegistrationScreen;
-// let otpScreen : OtpVerificationScreen;
+let profileScreen : ProfileScreenAction;
 
 declare let reporter: any;
 const specName = 'Login app validation';
@@ -25,8 +23,7 @@ describe(specName, () => {
   beforeAll(async () => {
     driver = await Driver.getDriver(specName);
     homeScreen = new HomeScreenUiValidationAction(driver);
-    profileScreen = new ProfileScreen(driver);
-    // otpScreen = new OtpVerificationScreen(driver);
+    profileScreen = new ProfileScreenAction(driver);
   });
 
   afterEach(async () => {
@@ -37,20 +34,12 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  /**
- * it will verify login on both android and ios
- * pass os in env.properties file
- */
   it('verify ProfileScreen', async () => {
     await homeScreen.tapProfileButton();
 
-    const welcomeText = await profileScreen.welcomeTextEle();
-    expect(welcomeText).to.be.true;
-
-    const appLogo = await profileScreen.isAppLogoDisplayed();
-    expect(appLogo).to.be.true;
-
-    // const registerButton = await profileScreen.registerButtonEle
-    // expect(registerButton).to.be.enabled
+    expect(await profileScreen.isWelcomeTextDisplayed).to.be.true;
+    expect(await profileScreen.isLogoDisplayed).to.be.true;
+    expect(await profileScreen.isRegisterButtonDisplayed).to.be.true;
+    expect(await profileScreen.isLoginButtonDisplayed).to.be.true;
   });
 });

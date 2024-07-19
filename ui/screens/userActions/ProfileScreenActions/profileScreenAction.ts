@@ -29,6 +29,18 @@ export class ProfileScreenAction extends BaseScreen {
     return this.profileScreen.getWelcomeText();
   }
 
+  async isWelcomeTextDisplayed(): Promise<boolean> {
+    return this.profileScreen.isWelcomeTextDisplayed();
+  }
+
+  async isRegisterButtonDisplayed(): Promise<boolean> {
+    return this.profileScreen.isRegisterButtonPresent();
+  }
+
+  async isLoginButtonDisplayed(): Promise<boolean> {
+    return this.profileScreen.isLoginButtonPresent();
+  }
+
   async waitForProfileScreenLoaded() {
     await this.profileScreen.waitForLoginScreenLoaded();
   }

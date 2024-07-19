@@ -3,6 +3,7 @@ import { BaseScreen, XpathUtil } from '../../../../uiExport';
 
 export class RegistrationScreen extends BaseScreen {
   private selectors = {
+    registerHeader: { ios: '~txt-register-heading' },
     backButton: { android: "//android.widget.Button[@content-desc='Back']", ios: "//*[@name='btn-back']" },
     profileIcon: { android: "//android.widget.Button[@content-desc='Profile']", ios: '~icon-user-plus' },
     pageTitle: { android: "//android.widget.TextView[@text='Register']", ios: '~txt-register-heading' },
@@ -86,6 +87,10 @@ export class RegistrationScreen extends BaseScreen {
     return this.getElement(this.selectors.emptyEmail.ios);
   }
 
+  async registerHeader(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.registerHeader.ios);
+  }
+
   async emptyConfirmPasswordError(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.emptyConfirmPassword.ios);
   }
@@ -115,6 +120,11 @@ export class RegistrationScreen extends BaseScreen {
     await this.setValue(mobileNumberInput, mobileNumber);
   }
 
+  async tapRegisterHeader() {
+    const registerHeader = await this.registerHeader();
+    await this.click(registerHeader);
+  }
+
   async tapRegisterButton() {
     const registerButton = await this.registerButtonEle();
     await this.click(registerButton);
@@ -125,14 +135,19 @@ export class RegistrationScreen extends BaseScreen {
     await this.click(loginLink);
   }
 
-  async tapBackButton() {
-    const backButton = await this.backButtonEle();
-    await this.click(backButton);
+  async tapOnFullName() {
+    const fullName = await this.fullNameInputEle();
+    await this.click(fullName);
   }
 
   async tapProfileIcon() {
     const profileIcon = await this.profileIconEle();
     await this.click(profileIcon);
+  }
+
+  async tapBackbutton() {
+    const backButton = await this.backButtonEle();
+    await this.click(backButton);
   }
 
   async getPageTitle(): Promise<string> {
@@ -198,25 +213,5 @@ export class RegistrationScreen extends BaseScreen {
   async isMobileNumberErrorDisplayed(): Promise<boolean> {
     const errorElement = await this.mobileNumberErrorEle();
     return this.isDisplayed(errorElement);
-  }
-
-  async registerNewUser(fullName: string, email: string, password: string, mobileNumber: string) {
-    await this.enterFullName(fullName);
-    await this.enterEmail(email);
-    await this.enterPassword(password);
-    await this.enterConfirmPassword(password);
-    await this.enterMobileNumber(mobileNumber);
-    await this.tapRegisterButton();
-  }
-
-  async validateEmptyFieldErrors() {
-    await this.tapRegisterButton();
-    const fullNameError = await this.isFullNameErrorDisplayed();
-    const emailError = await this.isEmailErrorDisplayed();
-    const passwordError = await this.isPasswordErrorDisplayed();
-    const confirmPasswordError = await this.isConfirmPasswordErrorDisplayed();
-    const mobileNumberError = await this.isMobileNumberErrorDisplayed();
-
-    return fullNameError && emailError && passwordError && confirmPasswordError && mobileNumberError;
   }
 }
