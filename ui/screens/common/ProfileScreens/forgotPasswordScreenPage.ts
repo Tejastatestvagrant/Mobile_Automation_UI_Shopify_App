@@ -6,11 +6,11 @@ export class ForgotPasswordScreen extends BaseScreen {
     emailInput: { android: "//*[@text='Enter your email']", ios: '~inp-email' },
     submitButton: { android: "//*[@text='Submit']", ios: '~icon-next' },
     forgotPasswordHeader: { ios: '~txt-forgot-password' },
-    emptyEmailField:{ios: '~txt-email-field-cannot-be-empty'},
+    emptyEmailField: { ios: '~txt-email-field-cannot-be-empty' },
     newPasswordInput: { android: "//*[@text='Enter your new password']", ios: '~inp-new-password' },
     confirmPasswordInput: { android: "//*[@text='Confirm password']", ios: '~inp-confirm-password' },
     resetPasswordButton: { android: "//*[@text='Reset password']", ios: '~btn-reset-password' },
-    resetpasswordSuccessfull: { ios: "//*[@name='Your password has been reset Successfully'])[5]" }
+    resetpasswordSuccessfull: { ios: "//*[@name='Your password has been reset Successfully'])[5]" },
   };
 
   async emailInputEle(): Promise<Element<'async'>> {
@@ -21,7 +21,7 @@ export class ForgotPasswordScreen extends BaseScreen {
     return this.getElement(this.selectors.submitButton.ios);
   }
 
-  async backButtonEle(): Promise<Element<'async'>> {
+  async forgotPassworderHeader(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.forgotPasswordHeader.ios);
   }
 
@@ -50,9 +50,5 @@ export class ForgotPasswordScreen extends BaseScreen {
     await this.setValue(await this.newPasswordInputEle(), passwordDetails.newPassword);
     await this.setValue(await this.confirmPasswordInputEle(), passwordDetails.confirmPassword);
     await this.click(await this.resetPasswordButtonEle());
-  }
-
-  async tapBackButton() {
-    await this.click(await this.backButtonEle());
   }
 }

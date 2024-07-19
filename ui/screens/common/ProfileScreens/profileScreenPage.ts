@@ -1,35 +1,34 @@
 import { Element } from 'webdriverio';
-import { BaseScreen, XpathUtil } from '../../../../uiExport';
+import { BaseScreen } from '../../../../uiExport';
 
 export class ProfileScreen extends BaseScreen {
   private selectors = {
     backButton: { android: "//*[@content-desc='backButton']", ios: '~btn-back' },
     welcomeText: { android: "//*[@content-desc='welcomeText']", ios: '~txt-welcome-to-ulshopify' },
     welcomeImage: { android: "//*[@content-desc='appLogo']", ios: '~img-welcome-to-ulshopify' },
-    registerButton: { android: "//*[@content-desc='registerButton']", ios: "~btn-register" },
+    registerButton: { android: "//*[@content-desc='registerButton']", ios: '~btn-register' },
     loginButton: { android: "//*[@content-desc='loginButton']", ios: '~btn-login' },
   };
 
   async backButtonEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.backButton.ios);
-}
+  }
 
-async welcomeTextEle(): Promise<Element<'async'>> {
+  async welcomeTextEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.welcomeText.ios);
-}
+  }
 
-async appLogoEle(): Promise<Element<'async'>> {
+  async appLogoEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.welcomeImage.ios);
-}
+  }
 
-async registerButtonEle(): Promise<Element<'async'>> {
+  async registerButtonEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.registerButton.ios);
-}
+  }
 
-async loginButtonEle(): Promise<Element<'async'>> {
+  async loginButtonEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.loginButton.ios);
-}
-
+  }
 
   async getWelcomeText(): Promise<string> {
     const welcomeTextElement = await this.welcomeTextEle();

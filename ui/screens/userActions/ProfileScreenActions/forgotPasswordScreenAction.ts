@@ -10,19 +10,15 @@ export class ResetPasswordScreenActions extends BaseScreen {
   }
 
   async enterEmail(email: string) {
-    await this.forgotPasswordScreen.enterEmail(email);
+    await this.setValue(await this.forgotPasswordScreen.emailInputEle(), email);
   }
 
   async tapSubmitButton() {
-    await this.forgotPasswordScreen.tapSubmitButton();
-  }
-
-  async tapBackButton() {
-    await this.forgotPasswordScreen.tapBackButton();
+    await this.click(await this.forgotPasswordScreen.submitButtonEle());
   }
 
   async isForgotPasswordTextDisplayed(): Promise<boolean> {
-    const forgotPasswordText = await this.forgotPasswordScreen.forgotPasswordTextEle();
+    const forgotPasswordText = await this.forgotPasswordScreen.forgotPassworderHeader();
     return this.forgotPasswordScreen.isDisplayed(forgotPasswordText);
   }
 
