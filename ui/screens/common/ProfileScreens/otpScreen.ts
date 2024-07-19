@@ -40,6 +40,11 @@ export class OtpVerificationScreen extends BaseScreen {
     return this.getElement(this.selectors.backButton.ios);
   }
 
+  async isOtpScreenDisplayed(): Promise<boolean> {
+    const screen = await this.otpInputFourEle();
+    return this.isDisplayed(screen);
+  }
+
   async fillOtp(otp: string) {
     const digits = otp.split('');
     await this.setValue(await this.otpInputOneEle(), '0');

@@ -21,6 +21,7 @@ export class RegistrationScreen extends BaseScreen {
     mobileNumberError: { android: "//android.widget.TextView[@text='Mobile number cannot be empty']", ios: '~txt-mobile-number-should-be-10-digits' },
     emptyEmail: { ios: '~txt-email-field-cannot-be-empty' },
     emptyConfirmPassword: { ios: '~txt-confirm-password-field-cannot-be-empty' },
+    errorMessagePopup: { ios: '~' },
   };
 
   async backButtonEle(): Promise<Element<'async'>> {
@@ -190,6 +191,11 @@ export class RegistrationScreen extends BaseScreen {
     return this.getText(errorElement);
   }
 
+  async isRegisterScreenDisplayed(): Promise<boolean> {
+    const screen = await this.registerButtonEle();
+    return this.isDisplayed(screen);
+  }
+
   async isFullNameErrorDisplayed(): Promise<boolean> {
     const errorElement = await this.fullNameErrorEle();
     return this.isDisplayed(errorElement);
@@ -213,5 +219,34 @@ export class RegistrationScreen extends BaseScreen {
   async isMobileNumberErrorDisplayed(): Promise<boolean> {
     const errorElement = await this.mobileNumberErrorEle();
     return this.isDisplayed(errorElement);
+  }
+
+  async registerNewUser(fullName: string, email: string, password: string, mobileNumber: string) {
+    await this.enterFullName(fullName);
+    await this.enterEmail(email);
+    await this.enterPassword(password);
+    await this.enterConfirmPassword(password);
+    await this.enterMobileNumber(mobileNumber);
+    await this.tapRegisterButton();
+  }
+
+  async validateEmptyFieldErrors() {
+    await this.tapRegisterButton();
+    const fullNameError = await this.isFullNameErrorDisplayed();
+    const emailError = await this.isEmailErrorDisplayed();
+    const passwordError = await this.isPasswordErrorDisplayed();
+    const confirmPasswordError = await this.isConfirmPasswordErrorDisplayed();
+    const mobileNumberError = await this.isMobileNumberErrorDisplayed();
+
+    return fullNameError && emailError && passwordError && confirmPasswordError && mobileNumberError;
+  }
+
+  async isErrorPopDisplayed(): Promise<boolean> {
+    try {
+      const successPopup = await this.getElement(this.selectors.errorMessagePopup.ios);
+      return await this.isDisplayed(successPopup);
+    } catch {
+      return false;
+    }
   }
 }
