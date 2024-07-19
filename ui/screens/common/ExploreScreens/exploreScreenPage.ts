@@ -102,4 +102,18 @@ export class ExploreScreen extends BaseScreen {
     return this.getText(productName);
   }
 
+  async tapOnProduct(productName: string): Promise<void> {
+    const suggestionList = await this.getElements(this.selectors.suggestedProductName.ios);
+    for (const suggestion of suggestionList) {
+      const name = await this.getText(suggestion);
+      
+      if (name === productName) {
+        await this.waitForElementDisplayed(suggestion,3000,false)
+        await this.click(suggestion);
+        return;
+      }
+    }
+    throw new Error(`Product with name '${productName}' not found in the suggestion list.`);
+  }
+
 }

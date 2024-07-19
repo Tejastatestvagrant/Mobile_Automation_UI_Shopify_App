@@ -6,3 +6,8 @@ export const registerUserCredential = {
   mobileNumber: '1234567890',
   otp: '0000',
 };
+
+export const loginUserCredential = {
+  username: 'ulshopify@ultralesson.com',
+  password: '12345',
+};
