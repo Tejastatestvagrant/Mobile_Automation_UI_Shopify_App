@@ -3,32 +3,33 @@ import { BaseScreen, XpathUtil } from '../../../../uiExport';
 
 export class ProfileScreen extends BaseScreen {
   private selectors = {
-    backButton: { android: "//*[@content-desc='backButton']", ios: "//*[@name='backButton']" },
-    welcomeText: { android: "//*[@content-desc='welcomeText']", ios: "//*[@name='welcomeText']" },
-    appLogo: { android: "//*[@content-desc='appLogo']", ios: "//*[@name='appLogo']" },
-    registerButton: { android: "//*[@content-desc='registerButton']", ios: "//*[@name='registerButton']" },
-    loginButton: { android: "//*[@content-desc='loginButton']", ios: "//*[@name='loginButton']" },
+    backButton: { android: "//*[@content-desc='backButton']", ios: '~btn-back' },
+    welcomeText: { android: "//*[@content-desc='welcomeText']", ios: '~txt-welcome-to-ulshopify' },
+    welcomeImage: { android: "//*[@content-desc='appLogo']", ios: '~img-welcome-to-ulshopify' },
+    registerButton: { android: "//*[@content-desc='registerButton']", ios: "~btn-register" },
+    loginButton: { android: "//*[@content-desc='loginButton']", ios: '~btn-login' },
   };
 
   async backButtonEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.backButton));
-  }
+    return this.getElement(this.selectors.backButton.ios);
+}
 
-  async welcomeTextEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.welcomeText));
-  }
+async welcomeTextEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.welcomeText.ios);
+}
 
-  async appLogoEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.appLogo));
-  }
+async appLogoEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.welcomeImage.ios);
+}
 
-  async registerButtonEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.registerButton));
-  }
+async registerButtonEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.registerButton.ios);
+}
 
-  async loginButtonEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.loginButton));
-  }
+async loginButtonEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.loginButton.ios);
+}
+
 
   async getWelcomeText(): Promise<string> {
     const welcomeTextElement = await this.welcomeTextEle();

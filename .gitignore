@@ -16,7 +16,7 @@ ui/resources/apk/*
 .updatedhyperexecute.yaml
 notifications/*
 tokens/*
-
+dist/
 # Compiled Java class files
 *.class
 
