@@ -6,6 +6,7 @@
 # Node artifact files
 node_modules/
 dist/
+
 allure-results/
 Allure-report/
 logs/
@@ -16,7 +17,7 @@ ui/resources/apk/*
 .updatedhyperexecute.yaml
 notifications/*
 tokens/*
-
+dist/
 # Compiled Java class files
 *.class
 
