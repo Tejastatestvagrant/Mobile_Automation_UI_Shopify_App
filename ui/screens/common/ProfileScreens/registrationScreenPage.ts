@@ -3,21 +3,23 @@ import { BaseScreen, XpathUtil } from '../../../../uiExport';
 
 export class RegistrationScreen extends BaseScreen {
   private selectors = {
-    backButton: { android: "//android.widget.Button[@content-desc='Back']", ios: "//XCUIElementTypeButton[@name='Back']" },
-    profileIcon: { android: "//android.widget.Button[@content-desc='Profile']", ios: "//XCUIElementTypeButton[@name='Profile']" },
-    pageTitle: { android: "//android.widget.TextView[@text='Register']", ios: "//XCUIElementTypeStaticText[@name='Register']" },
-    fullNameInput: { android: "//android.widget.EditText[@content-desc='Full Name']", ios: "//XCUIElementTypeTextField[@name='Full Name']" },
-    emailInput: { android: "//android.widget.EditText[@content-desc='Email']", ios: "//XCUIElementTypeTextField[@name='Email']" },
-    passwordInput: { android: "//android.widget.EditText[@content-desc='Password']", ios: "//XCUIElementTypeSecureTextField[@name='Password']" },
-    confirmPasswordInput: { android: "//android.widget.EditText[@content-desc='Confirm password']", ios: "//XCUIElementTypeSecureTextField[@name='Confirm password']" },
-    mobileNumberInput: { android: "//android.widget.EditText[@content-desc='Mobile number']", ios: "//XCUIElementTypeTextField[@name='Mobile number']" },
-    registerButton: { android: "//android.widget.Button[@text='Register']", ios: "//XCUIElementTypeButton[@name='Register']" },
-    loginLink: { android: "//android.widget.TextView[@text='Login']", ios: "//XCUIElementTypeLink[@name='Login']" },
-    fullNameError: { android: "//android.widget.TextView[@text='Full name cannot be empty']", ios: "//XCUIElementTypeStaticText[@name='Full name cannot be empty']" },
-    emailError: { android: "//android.widget.TextView[@text='Email field cannot be empty']", ios: "//XCUIElementTypeStaticText[@name='Email field cannot be empty']" },
-    passwordError: { android: "//android.widget.TextView[@text='Password field cannot be empty']", ios: "//XCUIElementTypeStaticText[@name='Password field cannot be empty']" },
-    confirmPasswordError: { android: "//android.widget.TextView[@text='Confirm password field cannot be empty']", ios: "//XCUIElementTypeStaticText[@name='Confirm password field cannot be empty']" },
-    mobileNumberError: { android: "//android.widget.TextView[@text='Mobile number cannot be empty']", ios: "//XCUIElementTypeStaticText[@name='Mobile number cannot be empty']" },
+    backButton: { android: "//android.widget.Button[@content-desc='Back']", ios: "//*[@name='btn-back']" },
+    profileIcon: { android: "//android.widget.Button[@content-desc='Profile']", ios: '~icon-user-plus' },
+    pageTitle: { android: "//android.widget.TextView[@text='Register']", ios: '~txt-register-heading' },
+    fullNameInput: { android: "//android.widget.EditText[@content-desc='Full Name']", ios: '~inp-fullname' },
+    emailInput: { android: "//android.widget.EditText[@content-desc='Email']", ios: '~inp-email' },
+    passwordInput: { android: "//android.widget.EditText[@content-desc='Password']", ios: '~inp-password' },
+    confirmPasswordInput: { android: "//android.widget.EditText[@content-desc='Confirm password']", ios: '~inp-confirm-password' },
+    mobileNumberInput: { android: "//android.widget.EditText[@content-desc='Mobile number']", ios: '~inp-mobile-number' },
+    registerButton: { android: "//android.widget.Button[@text='Register']", ios: '~btn-register' },
+    loginLink: { android: "//android.widget.TextView[@text='Login']", ios: '~btn-login' },
+    emptyFullName: { android: "//android.widget.TextView[@text='Full name cannot be empty']", ios: '~txt-full-name-cannot-be-empty' },
+    emailError: { android: "//android.widget.TextView[@text='Email field cannot be empty']", ios: '~txt-email-format-is-incorrect' },
+    passwordError: { android: "//android.widget.TextView[@text='Password field cannot be empty']", ios: '~txt-password-should-be-minimum-of-5-characters' },
+    confirmPasswordError: { android: "//android.widget.TextView[@text='Confirm password field cannot be empty']", ios: '~txt-confirm-password-is-not-matched-with-password' },
+    mobileNumberError: { android: "//android.widget.TextView[@text='Mobile number cannot be empty']", ios: '~txt-mobile-number-should-be-10-digits' },
+    emptyEmail:{ios:'~txt-email-field-cannot-be-empty'},
+    emptyConfirmPassword:{ios:'~txt-confirm-password-field-cannot-be-empty'},
   };
 
   async backButtonEle(): Promise<Element<'async'>> {
@@ -25,61 +27,68 @@ export class RegistrationScreen extends BaseScreen {
   }
 
   async profileIconEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.profileIcon));
+    return this.getElement(this.selectors.profileIcon.ios);
   }
 
   async pageTitleEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.pageTitle));
+    return this.getElement(this.selectors.pageTitle.ios);
   }
 
   async fullNameInputEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.fullNameInput));
+    return this.getElement(this.selectors.fullNameInput.ios);
   }
 
   async emailInputEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.emailInput));
+    return this.getElement(this.selectors.emailInput.ios);
   }
 
   async passwordInputEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.passwordInput));
+    return this.getElement(this.selectors.passwordInput.ios);
   }
 
   async confirmPasswordInputEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.confirmPasswordInput));
+    return this.getElement(this.selectors.confirmPasswordInput.ios);
   }
 
   async mobileNumberInputEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.mobileNumberInput));
+    return this.getElement(this.selectors.mobileNumberInput.ios);
   }
 
   async registerButtonEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.registerButton));
+    return this.getElement(this.selectors.registerButton.ios);
   }
 
   async loginLinkEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.loginLink));
+    return this.getElement(this.selectors.loginLink.ios);
   }
 
   async fullNameErrorEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.fullNameError));
+    return this.getElement(this.selectors.emptyFullName.ios);
   }
 
   async emailErrorEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.emailError));
+    return this.getElement(this.selectors.emptyEmail.ios);
   }
 
   async passwordErrorEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.passwordError));
+    return this.getElement(this.selectors.passwordError.ios);
   }
 
   async confirmPasswordErrorEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.confirmPasswordError));
+    return this.getElement(this.selectors.emptyConfirmPassword.ios);
   }
 
   async mobileNumberErrorEle(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.mobileNumberError));
+    return this.getElement(this.selectors.mobileNumberError.ios);
   }
-
+  
+  async emptyEmailError(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emptyEmail.ios);
+  }
+  
+  async emptyConfirmPasswordError(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emptyConfirmPassword.ios);
+  }
   async enterFullName(fullName: string) {
     const fullNameInput = await this.fullNameInputEle();
     await this.setValue(fullNameInput, fullName);
@@ -139,6 +148,11 @@ export class RegistrationScreen extends BaseScreen {
     const errorElement = await this.emailErrorEle();
     return this.getText(errorElement);
   }
+  
+  async getEmptyEmailError(): Promise<string> {
+    const errorElement = await this.emailErrorEle();
+    return this.getText(errorElement);
+  }
 
   async getPasswordError(): Promise<string> {
     const errorElement = await this.passwordErrorEle();
@@ -147,6 +161,11 @@ export class RegistrationScreen extends BaseScreen {
 
   async getConfirmPasswordError(): Promise<string> {
     const errorElement = await this.confirmPasswordErrorEle();
+    return this.getText(errorElement);
+  }
+
+  async getEmptyConfrimPasswordError(): Promise<string> {
+    const errorElement = await this.emailErrorEle();
     return this.getText(errorElement);
   }
 
