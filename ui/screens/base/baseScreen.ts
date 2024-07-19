@@ -257,4 +257,8 @@ export class BaseScreen {
       else return false;
     }
   }
+
+  async hideKeyboard(element :Element<'async'>): Promise<void> {
+    await this.click(element);
+  }
 }

@@ -12,8 +12,4 @@ export class LoginScreenActions extends BaseScreen {
   async login(accountDetails: { username: string; password: string }) {
     await this.loginScreen.fillLoginDetails(accountDetails);// Adjust the method call as needed
   }
-
-  async forgotPassword() {
-    await this.loginScreen.tapForgotPasswordLink();
-  }
 }
