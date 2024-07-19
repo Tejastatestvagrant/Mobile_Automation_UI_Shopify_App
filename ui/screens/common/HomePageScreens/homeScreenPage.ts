@@ -14,7 +14,7 @@ export class HomeScreen extends BaseScreen {
     cartTabButton: { android: "//*[@content-desc='navCart']", ios: "//*[@label='Cart, tab, 2 of 5']" },
     exploreTabButton: { android: "//*[@content-desc='navExplore']", ios: "//*[@label='Explore, tab, 3 of 5']" },
     trackOrderTabButton: { android: "//*[@content-desc='navTrack']", ios: "//*[@label='Track, tab, 4 of 5" },
-    profileTabButton: { android: "//*[@content-desc='navProfile']", ios: "//*[@label='Profile, tab, 5 of 5" },
+    profileTabButton: { android: "//*[@content-desc='navProfile']", ios: '~Profile, tab, 5 of 5' },
     welcomeBackText: { android: '', ios: "//*[@name='txt-welcome-back']" },
     usernameHeaderText: { android: '', ios: '#txt-username' },
     newArrivalsArrow: { android: '', ios: "(//*[@name='icon-next'])[1]" },
@@ -62,7 +62,7 @@ export class HomeScreen extends BaseScreen {
   }
 
   async profileTabButtonElement(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.profileTabButton));
+    return this.getElement(this.selectors.profileTabButton.ios);
   }
 
   async getWelcomeTextElement(): Promise<Element<'async'>> {

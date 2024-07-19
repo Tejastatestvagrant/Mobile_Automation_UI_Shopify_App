@@ -51,4 +51,9 @@ export class ForgotPasswordScreen extends BaseScreen {
     await this.setValue(await this.confirmPasswordInputEle(), passwordDetails.confirmPassword);
     await this.click(await this.resetPasswordButtonEle());
   }
+
+  async isForgotPasswordScreenDisplayed(): Promise<boolean> {
+    const res = await this.isDisplayed(this.selectors.forgotPasswordHeader.ios);
+    return res;
+  }
 }
