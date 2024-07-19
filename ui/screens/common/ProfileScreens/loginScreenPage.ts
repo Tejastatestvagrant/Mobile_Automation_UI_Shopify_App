@@ -1,5 +1,5 @@
 import { Element } from 'webdriverio';
-import { BaseScreen, XpathUtil } from '../../../../uiExport';
+import { BaseScreen } from '../../../../uiExport';
 
 export class LoginScreen extends BaseScreen {
   private selectors = {
@@ -7,9 +7,9 @@ export class LoginScreen extends BaseScreen {
     passwordInput: { android: "//*[@text='Password']", ios: '~inp-password' },
     loginButton: { android: "//*[@text='Login']", ios: '~btn-login' },
     forgotPasswordLink: { android: "//*[@text='Forgot Password?']", ios: '~txt-forgot-password' },
-    registerLink:{ios:'~btn-register'},
-    backButton :{ios:'~btn-back'},
-    usernameFormateError :{ios:'~txt-email-format-is-incorrect'}
+    registerLink: { ios: '~btn-register' },
+    backButton: { ios: '~btn-back' },
+    usernameFormateError: { ios: '~txt-email-format-is-incorrect' },
   };
 
   async usernameInputEle(): Promise<Element<'async'>> {
@@ -27,10 +27,11 @@ export class LoginScreen extends BaseScreen {
   async forgotPasswordLinkEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.forgotPasswordLink.ios);
   }
-  
+
   async registerLinkEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.forgotPasswordLink.ios);
   }
+
   async fillLoginDetails(accountDetails: { username: string; password: string }) {
     await this.setValue(await this.usernameInputEle(), accountDetails.username);
     await this.setValue(await this.passwordInputEle(), accountDetails.password);
@@ -41,7 +42,7 @@ export class LoginScreen extends BaseScreen {
     await this.click(await this.forgotPasswordLinkEle());
   }
 
-  async tapOnRegisterLink(){
-      await this.click(await this.registerLinkEle());
+  async tapOnRegisterLink() {
+    await this.click(await this.registerLinkEle());
   }
 }

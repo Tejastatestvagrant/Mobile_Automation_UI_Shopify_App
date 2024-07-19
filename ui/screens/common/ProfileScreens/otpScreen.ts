@@ -3,13 +3,13 @@ import { BaseScreen } from '../../../../uiExport';
 
 export class OtpVerificationScreen extends BaseScreen {
   private selectors = {
-    otpInputOne: {  ios: '~inp-opt-1' },
-    otpInputTwo :{ios:'~inp-opt-2'},
-    otpInputThree:{ios:'~inp-opt-3'},
-    otpInputFour :{ios:'~inp-opt-4'},
+    otpInputOne: { ios: '~inp-opt-1' },
+    otpInputTwo: { ios: '~inp-opt-2' },
+    otpInputThree: { ios: '~inp-opt-3' },
+    otpInputFour: { ios: '~inp-opt-4' },
     resendOtpLink: { android: "//*[@text='Resend again']", ios: '~lnk-resend-otp' },
     verifyButton: { android: "//*[@text='Verify']", ios: '~btn-verify' },
-    backButton: { ios: '~btn-back' }
+    backButton: { ios: '~btn-back' },
   };
 
   async otpInputOneEle(): Promise<Element<'async'>> {

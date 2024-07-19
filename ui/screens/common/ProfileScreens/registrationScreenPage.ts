@@ -18,8 +18,8 @@ export class RegistrationScreen extends BaseScreen {
     passwordError: { android: "//android.widget.TextView[@text='Password field cannot be empty']", ios: '~txt-password-should-be-minimum-of-5-characters' },
     confirmPasswordError: { android: "//android.widget.TextView[@text='Confirm password field cannot be empty']", ios: '~txt-confirm-password-is-not-matched-with-password' },
     mobileNumberError: { android: "//android.widget.TextView[@text='Mobile number cannot be empty']", ios: '~txt-mobile-number-should-be-10-digits' },
-    emptyEmail:{ios:'~txt-email-field-cannot-be-empty'},
-    emptyConfirmPassword:{ios:'~txt-confirm-password-field-cannot-be-empty'},
+    emptyEmail: { ios: '~txt-email-field-cannot-be-empty' },
+    emptyConfirmPassword: { ios: '~txt-confirm-password-field-cannot-be-empty' },
   };
 
   async backButtonEle(): Promise<Element<'async'>> {
@@ -81,14 +81,15 @@ export class RegistrationScreen extends BaseScreen {
   async mobileNumberErrorEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.mobileNumberError.ios);
   }
-  
+
   async emptyEmailError(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.emptyEmail.ios);
   }
-  
+
   async emptyConfirmPasswordError(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.emptyConfirmPassword.ios);
   }
+
   async enterFullName(fullName: string) {
     const fullNameInput = await this.fullNameInputEle();
     await this.setValue(fullNameInput, fullName);
@@ -148,7 +149,7 @@ export class RegistrationScreen extends BaseScreen {
     const errorElement = await this.emailErrorEle();
     return this.getText(errorElement);
   }
-  
+
   async getEmptyEmailError(): Promise<string> {
     const errorElement = await this.emailErrorEle();
     return this.getText(errorElement);
