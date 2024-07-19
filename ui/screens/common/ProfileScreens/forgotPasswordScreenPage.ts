@@ -1,7 +1,7 @@
 import { Element } from 'webdriverio';
 import { BaseScreen } from '../../../../uiExport';
 
-export class ForgotPasswordScreenPage extends BaseScreen {
+export class ForgotPasswordScreen extends BaseScreen {
   private selectors = {
     emailInput: { android: "//*[@text='Enter your email']", ios: '~inp-email' },
     submitButton: { android: "//*[@text='Submit']", ios: '~icon-next' },

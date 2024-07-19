@@ -1,7 +1,7 @@
 import { Element } from 'webdriverio';
 import { BaseScreen, XpathUtil } from '../../../../uiExport';
 
-export class LoginScreenPage extends BaseScreen {
+export class LoginScreen extends BaseScreen {
   private selectors = {
     usernameInput: { android: "//*[@text='Email']", ios: '~inp-email' },
     passwordInput: { android: "//*[@text='Password']", ios: '~inp-password' },
