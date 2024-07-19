@@ -21,7 +21,8 @@ export class HomeScreen extends BaseScreen {
     trendingProjectsArrow: { android: '', ios: "(//*[@name='icon-next'])[2]" },
     topRatedProductsArrow: { android: '', ios: "(//*[@name='icon-next'])[3]" },
     bestSellerArrow: { android: '', ios: "(//*[@name='icon-next'])[4]" },
-
+    searchBarHintText: { android: '', ios: "//*[@name='txt-search-for-more']" },
+    verticalScrollBar: { android: '', ios: '~Vertical scroll bar, 3 pages' },
   };
 
   async headerLogoElement(): Promise<Element<'async'>> {
@@ -64,32 +65,29 @@ export class HomeScreen extends BaseScreen {
     return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.profileTabButton));
   }
 
-  async tapHomeButton() {
-    const homeButton = await this.homeTabButtonElement();
-    await this.click(homeButton);
-  }
-
-  async tapCartButton() {
-    const cartButton = await this.cartTabButtonElement();
-    await this.click(cartButton);
-  }
-
-  async tapExploreButton() {
-    const exploreButton = await this.exploreTabButtonElement();
-    await this.click(exploreButton);
-  }
-
-  async tapTrackButton() {
-    const trackButton = await this.trackOrderTabButtonElement();
-    await this.click(trackButton);
-  }
-
-  async tapProfileButton() {
-    const profileButton = await this.profileTabButtonElement();
-    await this.click(profileButton);
-  }
-
-  async getWelcomeText(): Promise<Element<'async'>> {
+  async getWelcomeTextElement(): Promise<Element<'async'>> {
     return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.welcomeBackText));
+  }
+
+  async isAppLogoDisplayed(): Promise<boolean> {
+    const appLogo = await this.headerLogoElement();
+    return this.isDisplayed(appLogo);
+  }
+
+  async getWelcomeText(): Promise<string> {
+    const welcomeTextElement = await this.getWelcomeTextElement();
+    return this.getText(welcomeTextElement);
+  }
+
+  async topRatedProductsCarouselElement(): Promise<Element<'async'>> {
+    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.topRatedProductsCarousel));
+  }
+
+  async bestSellerCarouselElement(): Promise<Element<'async'>> {
+    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.bestSellersCarousel));
+  }
+
+  async verticalScrollBar(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.verticalScrollBar.ios);
   }
 }
