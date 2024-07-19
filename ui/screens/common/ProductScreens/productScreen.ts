@@ -20,7 +20,7 @@ export class ProductScreen extends BaseScreen {
     }
 
     async productDescription(): Promise<Element<'async'>> {
-        return this.getElement(this.selectors.addToCartButton.ios);
+        return this.getElement(this.selectors.productDescription.ios);
     }
     async ratingWithCategory(): Promise<Element<'async'>> {
         return this.getElement(this.selectors.productRatingWithCategory.ios);
