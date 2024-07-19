@@ -64,32 +64,17 @@ export class HomeScreen extends BaseScreen {
     return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.profileTabButton));
   }
 
-  async tapHomeButton() {
-    const homeButton = await this.homeTabButtonElement();
-    await this.click(homeButton);
-  }
-
-  async tapCartButton() {
-    const cartButton = await this.cartTabButtonElement();
-    await this.click(cartButton);
-  }
-
-  async tapExploreButton() {
-    const exploreButton = await this.exploreTabButtonElement();
-    await this.click(exploreButton);
-  }
-
-  async tapTrackButton() {
-    const trackButton = await this.trackOrderTabButtonElement();
-    await this.click(trackButton);
-  }
-
-  async tapProfileButton() {
-    const profileButton = await this.profileTabButtonElement();
-    await this.click(profileButton);
-  }
-
-  async getWelcomeText(): Promise<Element<'async'>> {
+  async getWelcomeTextElement(): Promise<Element<'async'>> {
     return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.welcomeBackText));
   }
+
+  async isAppLogoDisplayed(): Promise<boolean> {
+    const appLogo = await this.headerLogoElement();
+    return this.isDisplayed(appLogo);
+  }
+
+async getWelcomeText(): Promise<string> {
+    const welcomeTextElement = await this.getWelcomeTextElement();
+    return this.getText(welcomeTextElement);
+}
 }
