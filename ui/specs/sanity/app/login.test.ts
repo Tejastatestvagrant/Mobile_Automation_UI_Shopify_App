@@ -3,20 +3,20 @@
  */
 
 import { Browser } from 'webdriverio';
-import { Driver, LoginActions } from '../../../../uiExport';
+import { Driver, LoginScreenActions } from '../../../../uiExport';
 
 /**
  * Home Page Validation
  */
 let driver: Browser<'async'>;
-let loginActions: LoginActions;
+let loginActions: LoginScreenActions;
 
 declare let reporter: any;
 const specName = 'Login app validation';
 describe(specName, () => {
   beforeAll(async () => {
     driver = await Driver.getDriver(specName);
-    loginActions = new LoginActions(driver);
+    loginActions = new LoginScreenActions(driver);
   });
 
   afterEach(async () => {
