@@ -32,6 +32,7 @@ export { ProfileScreen } from './ui/screens/common/ProfileScreens/profileScreenP
 export { RegistrationScreen } from './ui/screens/common/ProfileScreens/registrationScreenPage';
 export { ResetPasswordScreen } from './ui/screens/common/ProfileScreens/resetPasswordScreenPage';
 export { ForgotPasswordScreen } from './ui/screens/common/ProfileScreens/forgotPasswordScreenPage';
+export { HomeScreen } from './ui/screens/common/HomePageScreens/homeScreenPage';
 
 // mobile user actions
 export { LoginScreenActions } from './ui/screens/userActions/ProfileScreenActions/loginScreenAction';
