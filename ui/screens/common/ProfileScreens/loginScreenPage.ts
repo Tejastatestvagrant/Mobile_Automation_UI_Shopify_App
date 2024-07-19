@@ -58,8 +58,10 @@ export class LoginScreen extends BaseScreen {
   async fillLoginDetails(accountDetails: { username: string; password: string }) {
     await this.setValue(await this.emailInputEle(), accountDetails.username);
     await this.setValue(await this.passwordInputEle(), accountDetails.password);
+
+    // you add the key you want to click
     if (await this.getElement('~Return')) {
-      await this.hideKeyboard(await this.getElement('~Return'));
+      await this.hideKeyboard();
     }
     await this.click(await this.loginButtonEle());
   }
