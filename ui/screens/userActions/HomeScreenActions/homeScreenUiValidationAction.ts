@@ -84,4 +84,34 @@ export class HomeScreenUiValidationAction extends BaseScreen {
       direction: 'down',
     });
   }
+
+  async tapClothingCategory() {
+    const clothButton = await this.homeScreen.clothingCategoryElement();
+    await this.click(clothButton);
+  }
+
+  async tapShoesCategory() {
+    const clothButton = await this.homeScreen.shoesCategoryElement();
+    await this.click(clothButton);
+  }
+
+  async tapFurnitureCategory() {
+    const clothButton = await this.homeScreen.furnitureCategoryElement();
+    await this.click(clothButton);
+  }
+
+  async tapToysCategory() {
+    const clothButton = await this.homeScreen.toysCategoryElement();
+    await this.click(clothButton);
+  }
+
+  async tapAudioEquipmentCategory() {
+    const clothButton = await this.homeScreen.audioSetsCategoryElement();
+    await this.click(clothButton);
+  }
+
+  async tapBookCategory() {
+    const clothButton = await this.homeScreen.bookCategoryElement();
+    await this.click(clothButton);
+  }
 }

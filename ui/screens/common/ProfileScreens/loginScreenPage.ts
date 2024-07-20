@@ -33,8 +33,11 @@ export class LoginScreen extends BaseScreen {
   }
 
   async fillLoginDetails(accountDetails: { username: string; password: string }) {
-    await this.setValue(await this.usernameInputEle(), accountDetails.username);
+    // await this.setValue(await this.emailInputEle(), accountDetails.username);
     await this.setValue(await this.passwordInputEle(), accountDetails.password);
+    if ((await this.getElement('~Return')).isDisplayed()) {
+      await this.hideKeyboard(await this.getElement('~Return'));
+    }
     await this.click(await this.loginButtonEle());
   }
 

@@ -14,7 +14,7 @@ export class HomeScreen extends BaseScreen {
     cartTabButton: { android: "//*[@content-desc='navCart']", ios: "//*[@label='Cart, tab, 2 of 5']" },
     exploreTabButton: { android: "//*[@content-desc='navExplore']", ios: "//*[@label='Explore, tab, 3 of 5']" },
     trackOrderTabButton: { android: "//*[@content-desc='navTrack']", ios: "//*[@label='Track, tab, 4 of 5" },
-    profileTabButton: { android: "//*[@content-desc='navProfile']", ios: "//*[@label='Profile, tab, 5 of 5" },
+    profileTabButton: { android: "//*[@content-desc='navProfile']", ios: "//*[@label='Profile, tab, 5 of 5']" },
     welcomeBackText: { android: '', ios: "//*[@name='txt-welcome-back']" },
     usernameHeaderText: { android: '', ios: '#txt-username' },
     newArrivalsArrow: { android: '', ios: "(//*[@name='icon-next'])[1]" },
@@ -23,6 +23,12 @@ export class HomeScreen extends BaseScreen {
     bestSellerArrow: { android: '', ios: "(//*[@name='icon-next'])[4]" },
     searchBarHintText: { android: '', ios: "//*[@name='txt-search-for-more']" },
     verticalScrollBar: { android: '', ios: '~Vertical scroll bar, 3 pages' },
+    clothingCatagory: { android: '', ios: "//*[@label='Clothing']" },
+    furnitureCatagory: { android: '', ios: "//*[@label='Furniture']" },
+    shoesCatagory: { android: '', ios: "//*[@label='Shoes']" },
+    toysCatagory: { android: '', ios: "//*[@label='Toys']" },
+    audioSetsCatagory: { android: '', ios: "//*[@label='Audio sets']" },
+    booksCatagory: { android: '', ios: "//*[@label='Books']" },
   };
 
   async headerLogoElement(): Promise<Element<'async'>> {
@@ -89,5 +95,29 @@ export class HomeScreen extends BaseScreen {
 
   async verticalScrollBar(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.verticalScrollBar.ios);
+  }
+
+  async clothingCategoryElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.clothingCatagory.ios);
+  }
+
+  async shoesCategoryElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.shoesCatagory.ios);
+  }
+
+  async furnitureCategoryElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.furnitureCatagory.ios);
+  }
+
+  async toysCategoryElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.toysCatagory.ios);
+  }
+
+  async audioSetsCategoryElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.audioSetsCatagory.ios);
+  }
+
+  async bookCategoryElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.booksCatagory.ios);
   }
 }

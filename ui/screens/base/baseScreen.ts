@@ -86,7 +86,7 @@ export class BaseScreen {
   /**
    * get text of element
    * @param element pass webelement or locator string
-   */
+  */
   async getText(element: string): Promise<string>;
 
   async getText(element: Element<'async'>): Promise<string>;
@@ -256,5 +256,9 @@ export class BaseScreen {
       if (!ignoreIfNotDisplayed) throw new Error(`element ${element} not displayed even after waiting ${timeout}`);
       else return false;
     }
+  }
+
+  async hideKeyboard(element :Element<'async'>): Promise<void> {
+    await this.click(element);
   }
 }
