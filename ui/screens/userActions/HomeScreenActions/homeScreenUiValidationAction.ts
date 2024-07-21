@@ -67,10 +67,22 @@ export class HomeScreenUiValidationAction extends BaseScreen {
   }
 
   async scrollTillEnd() {
-    await this.scrollArrivalsCarousel();
-    await this.scrollTrendingItemsCarousel();
-    await this.scrollTopRatedProductsCarousel();
-    await this.scrollBestSellerCarousel();
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.newArrivalsCarouselElement(),
+      direction: 'down',
+    });
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.trendingItemsCarouselElement(),
+      direction: 'down',
+    });
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.topRatedProductsCarouselElement(),
+      direction: 'down',
+    });
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.bestSellerCarouselElement(),
+      direction: 'down',
+    });
   }
 
   async tapClothingCategory() {
@@ -148,22 +160,38 @@ export class HomeScreenUiValidationAction extends BaseScreen {
   }
 
   async scrollTillTrendingItemsCarousel() {
-    await this.driver.pause(5000);
     await this.scrollArrivalsCarousel();
     await this.scrollTrendingItemsCarousel();
   }
 
   async scrollTillBestSellerCarousel() {
-    await this.driver.pause(5000);
     await this.scrollTrendingItemsCarousel();
     await this.scrollBestSellerCarousel();
   }
 
   async scrollCategoryGrid() {
-    await this.driver.pause(5000);
     await this.driver.execute('mobile: scroll', {
       element: await this.homeScreen.categoryGridElement(),
       direction: 'right',
+    });
+  }
+
+  async scrollTillUp() {
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.bestSellerCarouselElement(),
+      direction: 'up',
+    });
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.topRatedProductsCarouselElement(),
+      direction: 'up',
+    });
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.trendingItemsCarouselElement(),
+      direction: 'up',
+    });
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.newArrivalsCarouselElement(),
+      direction: 'up',
     });
   }
 }

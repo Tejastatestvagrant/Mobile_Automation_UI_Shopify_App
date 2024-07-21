@@ -9,6 +9,11 @@ export class ExploreScreens extends BaseScreen {
     exploreMoreHeading: { android: '', ios: "//*[@label='Explore More!!']" },
   };
 
+  async isBackButtonDisplayed(): Promise<boolean> {
+    const backBtn = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.backBtn));
+    return this.isDisplayed(backBtn);
+  }
+
   async backToHomeScreenBtn(): Promise<Element<'async'>> {
     return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.backBtn));
   }

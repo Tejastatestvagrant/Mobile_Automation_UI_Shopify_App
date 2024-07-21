@@ -29,6 +29,12 @@ export class HomeScreen extends BaseScreen {
     toysCatagory: { android: '', ios: "//*[@label='Toys']" },
     audioSetsCatagory: { android: '', ios: "//*[@label='Audio sets']" },
     booksCatagory: { android: '', ios: "//*[@label='Books']" },
+    footer: { android: '', ios: '~txt-footer' },
+    searchBoxPlaceholder: { android: '', ios: '~txt-search-for-more' },
+    exploreMoreNewArrivals: { android: '', ios: "(//*[@name='ele-explore-more'])[1]" },
+    exploreMoreTrendingItems: { android: '', ios: "(//*[@name='ele-explore-more'])[2]" },
+    exploreMoreTopRatedProducts: { android: '', ios: "(//*[@name='ele-explore-more'])[3]" },
+    exploreMoreBestSellers: { android: '', ios: "(//*[@name='ele-explore-more'])[4]" },
   };
 
   async headerLogoElement(): Promise<Element<'async'>> {
@@ -137,36 +143,38 @@ export class HomeScreen extends BaseScreen {
     return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.bestSellerArrow));
   }
 
-  async horizontalScrollBar(text: string) {
-    // Define the selector for the element containing the text
-    const selector = `//*[contains(@text, '${text}')]`;
-    let isTextVisible = false;
-
-    while (!isTextVisible) {
-      try {
-        // Check if the element is visible
-        isTextVisible = await this.driver.$(selector).isDisplayed();
-      } catch (err) {
-        isTextVisible = false;
-      }
-
-      if (!isTextVisible) {
-        await this.swipeLeft();
-      }
-    }
+  async isFooterDisplayed() {
+    const footer = await this.getElement(this.selectors.footer.ios);
+    return this.isDisplayed(footer);
   }
 
-  async swipeLeft(): Promise<void> {
-    const windowSize = await this.driver.getWindowSize();
-    const startX = Math.round(windowSize.width * 0.9);
-    const endX = Math.round(windowSize.width * 0.1);
-    const h = Math.round(windowSize.height * 0.25);
+  async getSearchBoxHintText(): Promise<string> {
+    const searchBox = await this.getElement(this.selectors.searchBoxPlaceholder.ios);
+    return this.getText(searchBox);
+  }
 
-    await this.driver.touchPerform([
-      { action: 'press', options: { x: startX, y: h } },
-      { action: 'wait', options: { ms: 1000 } },
-      { action: 'moveTo', options: { x: endX, y: h } },
-      { action: 'release' },
-    ]);
+  async isExploreMoreNewArrivalsDisplayed(): Promise<boolean> {
+    const exploreMoreNewArrivals = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.exploreMoreNewArrivals));
+    return this.isDisplayed(exploreMoreNewArrivals);
+  }
+
+  async isExploreMoreTrendingItemsDisplayed(): Promise<boolean> {
+    const exploreMoreTrendingItems = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.exploreMoreTrendingItems));
+    return this.isDisplayed(exploreMoreTrendingItems);
+  }
+
+  async isExploreMoreBestSellersDisplayed(): Promise<boolean> {
+    const exploreMoreBestSellers = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.exploreMoreBestSellers));
+    return this.isDisplayed(exploreMoreBestSellers);
+  }
+
+  async isExploreMoreTopRatedProductsDisplayed(): Promise<boolean> {
+    const exploreMoreTopRatedProducts = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.exploreMoreTopRatedProducts));
+    return this.isDisplayed(exploreMoreTopRatedProducts);
+  }
+
+  async isNewArraivalsDisplayed(): Promise<boolean> {
+    const newArraivals = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.newArrivalsCarousel));
+    return this.isDisplayed(newArraivals);
   }
 }

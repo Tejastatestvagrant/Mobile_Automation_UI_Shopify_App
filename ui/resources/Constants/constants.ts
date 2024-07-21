@@ -6,4 +6,5 @@ export const HomeScreenConstants = {
   Furnitures: 'furniture',
   Shoes: 'shoes',
   Audio_Equipments: 'audio sets',
+  SearchBoxPlaceHolderText: 'Search for more!!',
 };
