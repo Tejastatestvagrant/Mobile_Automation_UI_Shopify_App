@@ -21,29 +21,15 @@ export class ResetPasswordScreenActions extends BaseScreen {
     await this.resetPasswordScreen.tapResetPasswordButton();
   }
 
-  checkNewPasswordError(): Promise<boolean> {
-    return this.resetPasswordScreen.isNewPasswordErrorDisplayed();
-  }
-
-  checkConfirmPasswordError(): Promise<boolean> {
-    return this.resetPasswordScreen.isConfirmPasswordErrorDisplayed();
-  }
-
   checkSuccessPopup(): Promise<boolean> {
     return this.resetPasswordScreen.isSuccessPopupDisplayed();
   }
 
-  async resetPassword(newPassword: string, confirmPassword: string) {
-    await this.enterNewPassword(newPassword);
-    await this.enterConfirmPassword(confirmPassword);
+  async resetPassword(accountDetails: {newPassword: string, confirmPassword: string }) {
+    await this.enterNewPassword(accountDetails.newPassword);
+    await this.enterConfirmPassword(accountDetails.confirmPassword);
+    await this.hideKeyboard();
     await this.tapResetPasswordButton();
-  }
-
-  async validatePasswordErrors(): Promise<boolean> {
-    const newPasswordError = await this.checkNewPasswordError();
-    const confirmPasswordError = await this.checkConfirmPasswordError();
-
-    return newPasswordError && confirmPasswordError;
   }
 
   async validateSuccessPopup(): Promise<boolean> {

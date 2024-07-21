@@ -4,14 +4,14 @@ import { BaseScreen, XpathUtil } from '../../../../uiExport';
 export class ExploreScreen extends BaseScreen {
   private selectors = {
     backButton: { android: "//*[@content-desc='backButton']", ios: "//*[@name='backButton']" },
-    searchInput: { android: "//*[@content-desc='searchBar']", ios: "~inp-search" },
+    searchInput: { android: "//*[@content-desc='searchBar']", ios: '~inp-search' },
     searchIcon: { android: "//*[@content-desc='searchIcon']", ios: '//XCUIElementTypeOther[@name="icon-search"]/XCUIElementTypeOther/XCUIElementTypeOther' },
     exploreTitle: { android: "//android.widget.TextView[@text='Explore']", ios: '//XCUIElementTypeTextField[@name="inp-search"]' },
-    errorPopup: { android: '', ios: '(//XCUIElementTypeOther[@name="Uh oh, something went wrong Search field cannot be empty"])[4]'},
-    noProductFoundMessage: { android: '', ios: '~txt-no-products-found'},
-    moreButton: { android: '', ios:'~txt-more'},
-    suggestionListElement: { android:'', ios: "//*[@name='ele-auto-suggestion']"},
-    suggestedProductName: { android: '', ios: '~txt-product-name'}
+    errorPopup: { android: '', ios: '(//XCUIElementTypeOther[@name="Uh oh, something went wrong Search field cannot be empty"])[4]' },
+    noProductFoundMessage: { android: '', ios: '~txt-no-products-found' },
+    moreButton: { android: '', ios: '~txt-more' },
+    suggestionListElement: { android: '', ios: "//*[@name='ele-auto-suggestion']" },
+    suggestedProductName: { android: '', ios: '~txt-product-name' },
   };
 
   async backButtonEle(): Promise<Element<'async'>> {
@@ -72,21 +72,20 @@ export class ExploreScreen extends BaseScreen {
   }
 
   async isErrorMessageDisplayed(): Promise<boolean> {
-    const errorMessage = await this.getElement(XpathUtil.getXpath(this.driver,this.selectors.errorPopup))
+    const errorMessage = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.errorPopup));
     return this.isDisplayed(errorMessage);
   }
-  
 
   async isNoProductMessageDisplayed(): Promise<boolean> {
-    const message = await this.getElement(this.selectors.noProductFoundMessage.ios)
+    const message = await this.getElement(this.selectors.noProductFoundMessage.ios);
     return this.isDisplayed(message);
   }
 
   async isMoreButtonDisplayed(): Promise<boolean> {
-    const moreButton = await this.getElement(this.selectors.moreButton.ios)
+    const moreButton = await this.getElement(this.selectors.moreButton.ios);
     return this.isDisplayed(moreButton);
   }
-  
+
   async tapOnMoreButton() {
     const moreButton = await this.getElement(this.selectors.moreButton.ios);
     await this.click(moreButton);
@@ -94,7 +93,7 @@ export class ExploreScreen extends BaseScreen {
 
   async getSuggestionListElementCount(): Promise<number> {
     const elementCount = await this.getElements(this.selectors.suggestionListElement.ios);
-    return elementCount.length
+    return elementCount.length;
   }
 
   async getSuggestedProductName(): Promise<string> {
@@ -104,16 +103,16 @@ export class ExploreScreen extends BaseScreen {
 
   async tapOnProduct(productName: string): Promise<void> {
     const suggestionList = await this.getElements(this.selectors.suggestedProductName.ios);
+    // eslint-disable-next-line no-restricted-syntax
     for (const suggestion of suggestionList) {
       const name = await this.getText(suggestion);
-      
+
       if (name === productName) {
-        await this.waitForElementDisplayed(suggestion,3000,false)
+        await this.waitForElementDisplayed(suggestion, 3000, false);
         await this.click(suggestion);
         return;
       }
     }
     throw new Error(`Product with name '${productName}' not found in the suggestion list.`);
   }
-
 }

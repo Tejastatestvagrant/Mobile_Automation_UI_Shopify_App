@@ -9,7 +9,7 @@ export class LoginScreenActions extends BaseScreen {
     this.loginScreen = new LoginScreen(driver);
   }
 
-  async login(accountDetails: { username: string; password: string }) {
+  async login(accountDetails: { email: string; password: string }) {
     await this.loginScreen.fillLoginDetails(accountDetails);// Adjust the method call as needed
   }
 }

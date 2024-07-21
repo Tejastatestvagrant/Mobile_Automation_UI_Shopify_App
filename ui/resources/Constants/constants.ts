@@ -8,6 +8,6 @@ export const registerUserCredential = {
 };
 
 export const loginUserCredential = {
-  username: 'ulshopify@ultralesson.com',
+  email: 'ulshopify@ultralesson.com',
   password: '12345',
 };

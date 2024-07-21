@@ -53,11 +53,11 @@ export class OtpVerificationScreen extends BaseScreen {
     await this.setValue(await this.otpInputFourEle(), digits[3]);
     await this.click(await this.verifyButtonEle());
   }
-  
+
   async tapOnFirstOtp() {
     await this.click(await this.otpInputOneEle());
   }
-  
+
   async tapOnSecondOtp() {
     await this.click(await this.otpInputOneEle());
   }
