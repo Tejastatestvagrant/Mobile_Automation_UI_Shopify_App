@@ -18,7 +18,7 @@ export class ResetPasswordScreenActions extends BaseScreen {
   }
 
   async isForgotPasswordTextDisplayed(): Promise<boolean> {
-    const forgotPasswordText = await this.forgotPasswordScreen.forgotPassworderHeader();
+    const forgotPasswordText = await this.forgotPasswordScreen.forgotPasswordHeader();
     return this.forgotPasswordScreen.isDisplayed(forgotPasswordText);
   }
 

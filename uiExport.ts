@@ -33,6 +33,8 @@ export { RegistrationScreen } from './ui/screens/common/ProfileScreens/registrat
 export { ResetPasswordScreen } from './ui/screens/common/ProfileScreens/resetPasswordScreenPage';
 export { ForgotPasswordScreen } from './ui/screens/common/ProfileScreens/forgotPasswordScreenPage';
 export { HomeScreen } from './ui/screens/common/HomePageScreens/homeScreenPage';
+export { ExploreScreen } from './ui/screens/common/ExploreScreens/exploreScreenPage';
+export { ProductScreen } from './ui/screens/common/ProductScreens/productScreen';
 
 // mobile user actions
 export { LoginScreenActions } from './ui/screens/userActions/ProfileScreenActions/loginScreenAction';

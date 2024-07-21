@@ -54,7 +54,7 @@ describe(specName, () => {
 
   it('TC_57 Verify user cannot login with null credentials', async () => {
     try {
-      const accountDetails = { username: '', password: '' };
+      const accountDetails = { email: '', password: '' };
       await loginScreenActions.login(accountDetails);
       const emailFieldErrorMessage = await loginScreen.getEmailFieldErrorMessage();
       const passwordErrorMessage = await loginScreen.getPasswordFieldErrorMessage();
@@ -68,7 +68,7 @@ describe(specName, () => {
 
   it('TC_58 Verify user cannot login with null email and valid password', async () => {
     try {
-      const accountDetails = { username: '', password: 'validPassword123' };
+      const accountDetails = { email: '', password: 'validPassword123' };
       await loginScreenActions.login(accountDetails);
       const emailFieldErrorMessage = await loginScreen.getEmailFieldErrorMessage();
       expect(emailFieldErrorMessage).to.equal('Email field cannot be empty');
@@ -80,7 +80,7 @@ describe(specName, () => {
 
   it('TC_59 Verify user cannot login with invalid email format and valid password', async () => {
     try {
-      const accountDetails = { username: 'invalidEmail', password: 'validPassword123' };
+      const accountDetails = { email: 'invalidEmail', password: 'validPassword123' };
       await loginScreenActions.login(accountDetails);
       const emailFieldErrorMessage = await loginScreen.getEmailFormatErrorMessage();
       expect(emailFieldErrorMessage).to.equal('Email format is incorrect');
@@ -92,7 +92,7 @@ describe(specName, () => {
 
   it('TC_60 Verify user cannot login with valid email and null password', async () => {
     try {
-      const accountDetails = { username: 'validEmail@example.com', password: '' };
+      const accountDetails = { email: 'validEmail@example.com', password: '' };
       await loginScreenActions.login(accountDetails);
       const passwordErrorMessage = await loginScreen.getPasswordFieldErrorMessage();
       expect(passwordErrorMessage).to.equal('Password field cannot be empty');
@@ -104,7 +104,7 @@ describe(specName, () => {
 
   it('TC_61 Verify user cannot login with valid email and short password', async () => {
     try {
-      const accountDetails = { username: 'validEmail@example.com', password: 'short' };
+      const accountDetails = { email: 'validEmail@example.com', password: 'short' };
       await loginScreenActions.login(accountDetails);
       expect(await registrationScreen.isRegisterScreenDisplayed()).to.be.true;
       await registrationScreen.tapLoginLink();
