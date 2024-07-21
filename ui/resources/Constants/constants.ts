@@ -1,4 +1,5 @@
 export const HomeScreenConstants = {
+  WelcomeText: 'Welcome Back!!',
   Clothing: 'clothing',
   Toys: 'toys',
   Books: 'No products found.',

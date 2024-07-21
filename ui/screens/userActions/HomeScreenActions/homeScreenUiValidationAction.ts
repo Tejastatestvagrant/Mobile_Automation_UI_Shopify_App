@@ -67,22 +67,10 @@ export class HomeScreenUiValidationAction extends BaseScreen {
   }
 
   async scrollTillEnd() {
-    await this.driver.execute('mobile: scroll', {
-      element: await this.homeScreen.newArrivalsCarouselElement(),
-      direction: 'down',
-    });
-    await this.driver.execute('mobile: scroll', {
-      element: await this.homeScreen.trendingItemsCarouselElement(),
-      direction: 'down',
-    });
-    await this.driver.execute('mobile: scroll', {
-      element: await this.homeScreen.topRatedProductsCarouselElement(),
-      direction: 'down',
-    });
-    await this.driver.execute('mobile: scroll', {
-      element: await this.homeScreen.bestSellerCarouselElement(),
-      direction: 'down',
-    });
+    await this.scrollArrivalsCarousel();
+    await this.scrollTrendingItemsCarousel();
+    await this.scrollTopRatedProductsCarousel();
+    await this.scrollBestSellerCarousel();
   }
 
   async tapClothingCategory() {
@@ -113,5 +101,69 @@ export class HomeScreenUiValidationAction extends BaseScreen {
   async tapBookCategory() {
     const clothButton = await this.homeScreen.bookCategoryElement();
     await this.click(clothButton);
+  }
+
+  async tapNewArrivalArrow() {
+    return this.click(await this.homeScreen.newArrivalArrow());
+  }
+
+  async tapTrendingProductsArrow() {
+    return this.click(await this.homeScreen.trendingProductsArrow());
+  }
+
+  async tapTopRatedProductArrow() {
+    return this.click(await this.homeScreen.topRatedProductsArrow());
+  }
+
+  async tapBestSellerArrow() {
+    return this.click(await this.homeScreen.bestSellerArrow());
+  }
+
+  async scrollArrivalsCarousel() {
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.newArrivalsCarouselElement(),
+      direction: 'down',
+    });
+  }
+
+  async scrollTrendingItemsCarousel() {
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.trendingItemsCarouselElement(),
+      direction: 'down',
+    });
+  }
+
+  async scrollTopRatedProductsCarousel() {
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.topRatedProductsCarouselElement(),
+      direction: 'down',
+    });
+  }
+
+  async scrollBestSellerCarousel() {
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.bestSellerCarouselElement(),
+      direction: 'down',
+    });
+  }
+
+  async scrollTillTrendingItemsCarousel() {
+    await this.driver.pause(5000);
+    await this.scrollArrivalsCarousel();
+    await this.scrollTrendingItemsCarousel();
+  }
+
+  async scrollTillBestSellerCarousel() {
+    await this.driver.pause(5000);
+    await this.scrollTrendingItemsCarousel();
+    await this.scrollBestSellerCarousel();
+  }
+
+  async scrollCategoryGrid() {
+    await this.driver.pause(5000);
+    await this.driver.execute('mobile: scroll', {
+      element: await this.homeScreen.categoryGridElement(),
+      direction: 'right',
+    });
   }
 }

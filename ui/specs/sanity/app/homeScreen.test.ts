@@ -32,40 +32,72 @@ describe(specName, () => {
   });
 
   it('verify welcomeText and logo', async () => {
-    expect(await homeScreen.getWelcomeText()).to.equal('Welcome Back!!');
+    expect(await homeScreen.getWelcomeText()).to.equal(HomeScreenConstants.WelcomeText);
   });
 
-  it('Verify user logged in on home page', async () => {
+  it.skip('Verify user logged in on home page', async () => {
   });
 
-  it.only('Verify clothing category on home page', async () => {
+  it('Verify clothing category on home page', async () => {
     await homeScreenUiValidationAction.tapClothingCategory();
-    const text = await exploreScreen.getCategoryText();
-    expect(text).to.includes(HomeScreenConstants.Clothing);
+    expect(await exploreScreen.getCategoryText()).to.includes(HomeScreenConstants.Clothing);
   });
 
   it('Verify Shoes category on home page', async () => {
+    await exploreScreen.backToHomeScreen();
     await homeScreenUiValidationAction.tapShoesCategory();
-    expect(await homeScreen.isAppLogoDisplayed()).to.be.true;
-  });
-
-  it('Verify audio equipment category on home page', async () => {
-    await homeScreenUiValidationAction.tapAudioEquipmentCategory();
-    expect(await homeScreen.isAppLogoDisplayed()).to.be.true;
+    expect(await exploreScreen.getCategoryText()).to.includes(HomeScreenConstants.Shoes);
   });
 
   it('Verify Furniture category on home page', async () => {
+    await exploreScreen.backToHomeScreen();
     await homeScreenUiValidationAction.tapFurnitureCategory();
-    expect(await homeScreen.isAppLogoDisplayed()).to.be.true;
-  });
-
-  it('Verify Books category on home page', async () => {
-    await homeScreenUiValidationAction.tapBookCategory();
-    expect(await homeScreen.isAppLogoDisplayed()).to.be.true;
+    expect(await exploreScreen.getCategoryText()).to.includes(HomeScreenConstants.Furnitures);
   });
 
   it('Verify Toys category on home page', async () => {
+    await exploreScreen.backToHomeScreen();
     await homeScreenUiValidationAction.tapToysCategory();
-    expect(await homeScreen.isAppLogoDisplayed()).to.be.true;
+    expect(await exploreScreen.getCategoryText()).to.includes(HomeScreenConstants.Toys);
+  });
+
+  it('Verify audio equipment category on home page', async () => {
+    await exploreScreen.backToHomeScreen();
+    await homeScreenUiValidationAction.scrollCategoryGrid();
+    await homeScreenUiValidationAction.tapAudioEquipmentCategory();
+    expect(await exploreScreen.getCategoryText()).to.includes(HomeScreenConstants.Audio_Equipments);
+  });
+
+  it('Verify Books category on home page', async () => {
+    await exploreScreen.backToHomeScreen();
+    await homeScreenUiValidationAction.scrollCategoryGrid();
+    await homeScreenUiValidationAction.tapBookCategory();
+    expect(await exploreScreen.getBookCategoryText()).to.includes(HomeScreenConstants.Books);
+  });
+
+  it('Verify New Arrivals section on home page', async () => {
+    await exploreScreen.backToHomeScreen();
+    await homeScreenUiValidationAction.tapNewArrivalArrow();
+    expect(await exploreScreen.isExploreHeadingDisplayed()).to.be.true;
+  });
+
+  it('Verify Trending Products section on home page', async () => {
+    await exploreScreen.backToHomeScreen();
+    await homeScreenUiValidationAction.tapTrendingProductsArrow();
+    expect(await exploreScreen.isExploreHeadingDisplayed()).to.be.true;
+  });
+
+  it('Verify Top rated Products section on home page', async () => {
+    await exploreScreen.backToHomeScreen();
+    await homeScreenUiValidationAction.scrollTillTrendingItemsCarousel();
+    await homeScreenUiValidationAction.tapTopRatedProductArrow();
+    expect(await exploreScreen.isExploreHeadingDisplayed()).to.be.true;
+  });
+
+  it('Verify Best Sellers Products section on home page', async () => {
+    await exploreScreen.backToHomeScreen();
+    await homeScreenUiValidationAction.scrollTillBestSellerCarousel();
+    await homeScreenUiValidationAction.tapBestSellerArrow();
+    expect(await exploreScreen.isExploreHeadingDisplayed()).to.be.true;
   });
 });

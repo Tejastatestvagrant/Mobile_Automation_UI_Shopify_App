@@ -18,7 +18,7 @@ export class HomeScreen extends BaseScreen {
     welcomeBackText: { android: '', ios: "//*[@name='txt-welcome-back']" },
     usernameHeaderText: { android: '', ios: '#txt-username' },
     newArrivalsArrow: { android: '', ios: "(//*[@name='icon-next'])[1]" },
-    trendingProjectsArrow: { android: '', ios: "(//*[@name='icon-next'])[2]" },
+    trendingProductsArrow: { android: '', ios: "(//*[@name='icon-next'])[2]" },
     topRatedProductsArrow: { android: '', ios: "(//*[@name='icon-next'])[3]" },
     bestSellerArrow: { android: '', ios: "(//*[@name='icon-next'])[4]" },
     searchBarHintText: { android: '', ios: "//*[@name='txt-search-for-more']" },
@@ -119,5 +119,54 @@ export class HomeScreen extends BaseScreen {
 
   async bookCategoryElement(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.booksCatagory.ios);
+  }
+
+  async newArrivalArrow(): Promise<Element<'async'>> {
+    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.newArrivalsArrow));
+  }
+
+  async trendingProductsArrow(): Promise<Element<'async'>> {
+    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.trendingProductsArrow));
+  }
+
+  async topRatedProductsArrow(): Promise<Element<'async'>> {
+    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.topRatedProductsArrow));
+  }
+
+  async bestSellerArrow(): Promise<Element<'async'>> {
+    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.bestSellerArrow));
+  }
+
+  async horizontalScrollBar(text: string) {
+    // Define the selector for the element containing the text
+    const selector = `//*[contains(@text, '${text}')]`;
+    let isTextVisible = false;
+
+    while (!isTextVisible) {
+      try {
+        // Check if the element is visible
+        isTextVisible = await this.driver.$(selector).isDisplayed();
+      } catch (err) {
+        isTextVisible = false;
+      }
+
+      if (!isTextVisible) {
+        await this.swipeLeft();
+      }
+    }
+  }
+
+  async swipeLeft(): Promise<void> {
+    const windowSize = await this.driver.getWindowSize();
+    const startX = Math.round(windowSize.width * 0.9);
+    const endX = Math.round(windowSize.width * 0.1);
+    const h = Math.round(windowSize.height * 0.25);
+
+    await this.driver.touchPerform([
+      { action: 'press', options: { x: startX, y: h } },
+      { action: 'wait', options: { ms: 1000 } },
+      { action: 'moveTo', options: { x: endX, y: h } },
+      { action: 'release' },
+    ]);
   }
 }
