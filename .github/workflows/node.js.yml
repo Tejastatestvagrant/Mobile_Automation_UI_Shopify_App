@@ -13,15 +13,15 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '22'
 
     - name: Cache Node.js modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -35,19 +35,19 @@ jobs:
       run: npm run eslint-fix
 
     - name: Run tests
-      run: npm test
+      run: npm compile&&test-local
 
     - name: Generate Allure report
       run: npm run generate-report
 
     - name: Upload Allure results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: allure-results
         path: allure-results
 
     - name: Upload Allure report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: allure-report
         path: allure-report
