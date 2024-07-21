@@ -34,8 +34,9 @@ jobs:
     - name: Run lint
       run: npm run eslint-fix
 
-    - name: Run tests
-      run: npm compile&&test-local
+    - name: Start WebDriver and run tests
+      run: |
+        npx concurrently "npm run webdriver-start" "npm run compile && npm run test-local"
 
     - name: Generate Allure report
       run: npm run generate-report
