@@ -7,4 +7,6 @@ export const HomeScreenConstants = {
   Shoes: 'shoes',
   Audio_Equipments: 'audio sets',
   SearchBoxPlaceHolderText: 'Search for more!!',
+  EmptyCartText: 'Your Cart is Empty!!',
+  TrackText: 'Log in to view and track your orders.',
 };

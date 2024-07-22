@@ -13,7 +13,7 @@ export class HomeScreen extends BaseScreen {
     homeTabButton: { android: "//*[@content-desc='navHome']", ios: "//*[@label='Home, tab, 1 of 5']" },
     cartTabButton: { android: "//*[@content-desc='navCart']", ios: "//*[@label='Cart, tab, 2 of 5']" },
     exploreTabButton: { android: "//*[@content-desc='navExplore']", ios: "//*[@label='Explore, tab, 3 of 5']" },
-    trackOrderTabButton: { android: "//*[@content-desc='navTrack']", ios: "//*[@label='Track, tab, 4 of 5" },
+    trackOrderTabButton: { android: "//*[@content-desc='navTrack']", ios: "//*[@name='Track, tab, 4 of 5']" },
     profileTabButton: { android: "//*[@content-desc='navProfile']", ios: "//*[@label='Profile, tab, 5 of 5']" },
     welcomeBackText: { android: '', ios: "//*[@name='txt-welcome-back']" },
     usernameHeaderText: { android: '', ios: '#txt-username' },
@@ -35,6 +35,11 @@ export class HomeScreen extends BaseScreen {
     exploreMoreTrendingItems: { android: '', ios: "(//*[@name='ele-explore-more'])[2]" },
     exploreMoreTopRatedProducts: { android: '', ios: "(//*[@name='ele-explore-more'])[3]" },
     exploreMoreBestSellers: { android: '', ios: "(//*[@name='ele-explore-more'])[4]" },
+    emptyCart: { android: '', ios: '~txt-empty-cart-message' },
+    continueShoppingBtn: { android: '', ios: '~txt-continue-shopping' },
+    trackOrderWithoutLogin: { android: '', ios: '~txt-track-order-login-message' },
+    loginBtn: { android: '', ios: '~txt-login' },
+    backBtn: { android: '', ios: '~btn-back' },
   };
 
   async headerLogoElement(): Promise<Element<'async'>> {
@@ -176,5 +181,26 @@ export class HomeScreen extends BaseScreen {
   async isNewArraivalsDisplayed(): Promise<boolean> {
     const newArraivals = await this.getElement(XpathUtil.getXpath(this.driver, this.selectors.newArrivalsCarousel));
     return this.isDisplayed(newArraivals);
+  }
+
+  async emptyCartElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emptyCart.ios);
+  }
+
+  async continueShoppingElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.continueShoppingBtn.ios);
+  }
+
+  async trackOrderElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.trackOrderWithoutLogin.ios);
+  }
+
+  async isLoginBtnDisplayed(): Promise<boolean> {
+    const loginBtn = await this.getElement(this.selectors.loginBtn.ios);
+    return this.isDisplayed(loginBtn);
+  }
+
+  async backBtnElement(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.backBtn.ios);
   }
 }

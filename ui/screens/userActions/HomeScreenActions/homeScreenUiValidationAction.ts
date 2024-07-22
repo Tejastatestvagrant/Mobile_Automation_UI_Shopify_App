@@ -194,4 +194,22 @@ export class HomeScreenUiValidationAction extends BaseScreen {
       direction: 'up',
     });
   }
+
+  async getEmptyCartText() {
+    const emptyCartText = await this.homeScreen.emptyCartElement();
+    return this.getText(emptyCartText);
+  }
+
+  async tapContinueShopping() {
+    return this.click(await this.homeScreen.continueShoppingElement());
+  }
+
+  async getTrackOrderWithoutLoginText() {
+    const trackOrderWithoutLoginText = await this.homeScreen.trackOrderElement();
+    return this.getText(trackOrderWithoutLoginText);
+  }
+
+  async tapBackButton() {
+    return this.click(await this.homeScreen.backBtnElement());
+  }
 }

@@ -145,4 +145,21 @@ describe(specName, () => {
     await homeScreenUiValidationAction.scrollTillEnd();
     expect(await homeScreen.isFooterDisplayed()).to.be.true;
   });
+
+  it('Verify navigation to cart page with empty cart', async () => {
+    await homeScreenUiValidationAction.tapCartButton();
+    expect(await homeScreenUiValidationAction.getEmptyCartText()).to.be.equal(HomeScreenConstants.EmptyCartText);
+  });
+
+  it('Verify navigation to track page without login', async () => {
+    await homeScreenUiValidationAction.tapContinueShopping();
+    await homeScreenUiValidationAction.tapTrackButton();
+    expect(await homeScreenUiValidationAction.getTrackOrderWithoutLoginText()).to.be.equal(HomeScreenConstants.TrackText);
+  });
+
+  it('Verify navigation to profile page without login', async () => {
+    await homeScreenUiValidationAction.tapBackButton();
+    await homeScreenUiValidationAction.tapProfileButton();
+    expect(await homeScreen.isLoginBtnDisplayed()).to.be.true;
+  });
 });
