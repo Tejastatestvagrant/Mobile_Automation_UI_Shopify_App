@@ -11,11 +11,16 @@
     "generate-report": "allure generate --clean allure-results",
     "generate-report-open": "allure generate --clean allure-results && allure open",
     "eslint-fix": "npx eslint . --ext .ts --fix",
-    "test-local": "jest ui/specs/sanity/app/*.test.ts --maxWorkers=1 --forceExit",
+    "test-local": "jest ui/specs/sanity/app/*.test.ts --maxWorkers=1 --forceExit", 
+    "test-local-smoke": "jest ui/specs/sanity/app/*.test.ts --maxWorkers=1 --forceExit --testNamePattern='@Smoke'",
+    "test-local-regression": "jest ui/specs/sanity/app/*.test.ts --maxWorkers=1 --forceExit --testNamePattern='@Regression'",
+    "test-local-homeScreen-Features": "jest ui/specs/sanity/app/homeScreen.test.ts --maxWorkers=1 --forceExit --testNamePattern='@HomeScreenFeatures'",
     "test-api": "jest webservices/specs/**/**/**/*.test.ts --group=$Group --maxWorkers=5 --forceExit",
     "test-ui": "jest ui/specs/**/web/*.test.ts --group=$Group --maxWorkers=5 --forceExit",
     "test-app": "jest ui/specs/**/app/*.test.ts --group=$Group --maxWorkers=5 --forceExit",
-    "prepare-husky": "husky install"
+    "prepare-husky": "husky install",
+    "test-ui-smoke": "jest --testNamePattern='@Smoke'",
+    "test-ui-regression": "jest --testNamePattern='@Regression'"
   },
   "license": "ISC",
   "devDependencies": {
@@ -68,6 +73,7 @@
     "jest-codemods": "^0.26.1",
     "jsonpath-plus": "^6.0.1",
     "jsonschema": "^1.4.1",
+    "mocha": "^10.7.0",
     "moment": "^2.29.4",
     "superagent": "^8.0.0",
     "uuid": "^9.0.0",
@@ -75,6 +81,7 @@
     "webdriver-manager": "^12.1.9",
     "webdriverio": "^7.5.7",
     "webhook-discord": "^3.7.8",
-    "winston": "^3.7.2"
+    "winston": "^3.7.2",
+    "concurrently": "^7.0.0"
   }
 }
