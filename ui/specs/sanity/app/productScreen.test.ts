@@ -8,12 +8,12 @@ import {
   Driver, ExploreScreen, ProductScreen,
 } from '../../../../uiExport';
 import { HomeScreenUiValidationAction } from '../../../screens/userActions/HomeScreenActions/homeScreenUiValidationAction';
-import { E2eLoginAction } from '../../../screens/userActions/ProfileScreenActions/e2eLoginAction';
+// import { E2eLoginAction } from '../../../screens/userActions/ProfileScreenActions/e2eLoginAction';
 
 let driver: Browser<'async'>;
 let exploreScreen: ExploreScreen;
 let productScreen: ProductScreen;
-let e2eLoginAction: E2eLoginAction;
+// let e2eLoginAction: E2eLoginAction;
 
 let homeScreenUiValidationAction: HomeScreenUiValidationAction;
 
@@ -25,9 +25,9 @@ describe(specName, () => {
     exploreScreen = new ExploreScreen(driver);
     productScreen = new ProductScreen(driver);
     homeScreenUiValidationAction = new HomeScreenUiValidationAction(driver);
-    e2eLoginAction = new E2eLoginAction(driver);
+    // e2eLoginAction = new E2eLoginAction(driver);
 
-    await e2eLoginAction.login();
+    // await e2eLoginAction.login();
     await homeScreenUiValidationAction.tapExploreButton();
   });
 

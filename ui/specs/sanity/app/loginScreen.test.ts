@@ -52,7 +52,7 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('TC_57 Verify user cannot login with null credentials', async () => {
+  it('Verify user cannot login with null credentials', async () => {
     try {
       const accountDetails = { email: '', password: '' };
       await loginScreenActions.login(accountDetails);
@@ -61,77 +61,77 @@ describe(specName, () => {
       expect(emailFieldErrorMessage).to.equal('Email field cannot be empty');
       expect(passwordErrorMessage).to.equal('Password field cannot be empty');
     } catch (error) {
-      console.error(`TC_57 failed: ${error.message}`);
-      expect.fail(`TC_57 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 
-  it('TC_58 Verify user cannot login with null email and valid password', async () => {
+  it('Verify user cannot login with null email and valid password', async () => {
     try {
       const accountDetails = { email: '', password: 'validPassword123' };
       await loginScreenActions.login(accountDetails);
       const emailFieldErrorMessage = await loginScreen.getEmailFieldErrorMessage();
       expect(emailFieldErrorMessage).to.equal('Email field cannot be empty');
     } catch (error) {
-      console.error(`TC_58 failed: ${error.message}`);
-      expect.fail(`TC_58 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 
-  it('TC_59 Verify user cannot login with invalid email format and valid password', async () => {
+  it('Verify user cannot login with invalid email format and valid password', async () => {
     try {
       const accountDetails = { email: 'invalidEmail', password: 'validPassword123' };
       await loginScreenActions.login(accountDetails);
       const emailFieldErrorMessage = await loginScreen.getEmailFormatErrorMessage();
       expect(emailFieldErrorMessage).to.equal('Email format is incorrect');
     } catch (error) {
-      console.error(`TC_59 failed: ${error.message}`);
-      expect.fail(`TC_59 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 
-  it('TC_60 Verify user cannot login with valid email and null password', async () => {
+  it('Verify user cannot login with valid email and null password', async () => {
     try {
       const accountDetails = { email: 'validEmail@example.com', password: '' };
       await loginScreenActions.login(accountDetails);
       const passwordErrorMessage = await loginScreen.getPasswordFieldErrorMessage();
       expect(passwordErrorMessage).to.equal('Password field cannot be empty');
     } catch (error) {
-      console.error(`TC_60 failed: ${error.message}`);
-      expect.fail(`TC_60 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 
-  it('TC_61 Verify user cannot login with valid email and short password', async () => {
+  it('Verify user cannot login with valid email and short password', async () => {
     try {
       const accountDetails = { email: 'validEmail@example.com', password: 'short' };
       await loginScreenActions.login(accountDetails);
       expect(await registrationScreen.isRegisterScreenDisplayed()).to.be.true;
       await registrationScreen.tapLoginLink();
     } catch (error) {
-      console.error(`TC_61 failed: ${error.message}`);
-      expect.fail(`TC_61 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 
-  it('TC_63 Verify user can navigate to Register page', async () => {
+  it('Verify user can navigate to Register page', async () => {
     try {
       await loginScreen.tapOnRegisterLink();
       expect(await registrationScreen.isRegisterScreenDisplayed()).to.be.true;
       await registrationScreen.tapLoginLink();
     } catch (error) {
-      console.error(`TC_63 failed: ${error.message}`);
-      expect.fail(`TC_63 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 
-  it('TC_62 Verify user can navigate to Forgot Password page', async () => {
+  it('Verify user can navigate to Forgot Password page', async () => {
     try {
       await loginScreen.tapForgotPasswordLink();
       expect(await forgotPasswordScreen.isForgotPasswordScreenDisplayed()).to.be.true;
     } catch (error) {
-      console.error(`TC_62 failed: ${error.message}`);
-      expect.fail(`TC_62 failed: ${error.message}`);
+      console.error(`failed: ${error.message}`);
+      expect.fail(`failed: ${error.message}`);
     }
   });
 });
