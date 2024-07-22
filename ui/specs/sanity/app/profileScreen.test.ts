@@ -34,7 +34,7 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('verify ProfileScreen', async () => {
+  it('verify ProfileScreen  @Smoke @Regression', async () => {
     await homeScreen.tapProfileButton();
 
     expect(await profileScreen.isWelcomeTextDisplayed()).to.be.true;

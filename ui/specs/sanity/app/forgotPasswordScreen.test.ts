@@ -49,20 +49,20 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('Verify user cannot Proceed with null credentials', async () => {
+  it('Verify user cannot Proceed with null credentials @Smoke @Regression', async () => {
     const accountDetails = { email: '', password: '' };
     await forgotPasswordScreen.fillForgotPasswordEmail(accountDetails.email);
     const errorMsg = await forgotPasswordScreen.getEmailFieldEmptyErrorMsg();
     expect(errorMsg).to.be.equal('Email field cannot be empty');
   });
 
-  it('Verify user cannot Proceed with incorrect Format of the Email credentials', async () => {
+  it('Verify user cannot Proceed with incorrect Format of the Email credentials @Smoke', async () => {
     const accountDetails = { email: 'incorrectEmail', password: '' };
     await forgotPasswordScreen.fillForgotPasswordEmail(accountDetails.email);
     expect(await forgotPasswordScreen.getEmailFieldFormatErrorMsg()).to.be.equal('Email format is incorrect');
   });
 
-  it('Verify user cannot Proceed with unregistered  Email credentials', async () => {
+  it('Verify user cannot Proceed with unregistered  Email credentials @Smoke @Regression', async () => {
     const accountDetails = { email: 'validEmail@gmail.com', password: '' };
     await forgotPasswordScreen.fillForgotPasswordEmail(accountDetails.email);
     // expect(forgotPasswordScreen.getEmailFieldFormatErrorMsg()).to.be.equal('Email-unregistered');
