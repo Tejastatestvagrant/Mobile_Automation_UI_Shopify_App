@@ -1,7 +1,7 @@
 import { Browser } from 'webdriverio';
 import {
   BaseScreen, LoginScreenActions, ProfileScreen,
-} from '../../../../uiExport'; // Adjust the import path as needed
+} from '../../../../uiExport';
 import { HomeScreenUiValidationAction } from '../HomeScreenActions/homeScreenUiValidationAction';
 import { loginUserCredential } from '../../../resources/Constants/constants';
 import OtpScreenAction from './otpScreenAction';

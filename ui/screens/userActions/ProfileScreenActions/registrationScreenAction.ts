@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, RegistrationScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, RegistrationScreen } from '../../../../uiExport';
 import OtpScreenAction from './otpScreenAction';
 
 export class RegistrationScreenActions extends BaseScreen {

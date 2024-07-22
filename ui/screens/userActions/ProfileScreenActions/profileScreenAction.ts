@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, ProfileScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, ProfileScreen } from '../../../../uiExport';
 
 export class ProfileScreenAction extends BaseScreen {
   profileScreen: ProfileScreen;
