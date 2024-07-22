@@ -52,7 +52,7 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('Verify user cannot login with null credentials', async () => {
+  it('Verify user cannot login with null credentials  @Smoke @Regression', async () => {
     try {
       const accountDetails = { email: '', password: '' };
       await loginScreenActions.login(accountDetails);
@@ -66,7 +66,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify user cannot login with null email and valid password', async () => {
+  it('Verify user cannot login with null email and valid password  @Smoke', async () => {
     try {
       const accountDetails = { email: '', password: 'validPassword123' };
       await loginScreenActions.login(accountDetails);
@@ -78,7 +78,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify user cannot login with invalid email format and valid password', async () => {
+  it('Verify user cannot login with invalid email format and valid password  @Smoke ', async () => {
     try {
       const accountDetails = { email: 'invalidEmail', password: 'validPassword123' };
       await loginScreenActions.login(accountDetails);
@@ -90,7 +90,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify user cannot login with valid email and null password', async () => {
+  it('Verify user cannot login with valid email and null password  @Smoke @Regression', async () => {
     try {
       const accountDetails = { email: 'validEmail@example.com', password: '' };
       await loginScreenActions.login(accountDetails);
@@ -102,7 +102,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify user cannot login with valid email and short password', async () => {
+  it('Verify user cannot login with valid email and short password  @Smoke @Regression ', async () => {
     try {
       const accountDetails = { email: 'validEmail@example.com', password: 'short' };
       await loginScreenActions.login(accountDetails);
@@ -114,7 +114,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify user can navigate to Register page', async () => {
+  it('Verify user can navigate to Register page  @Smoke @Regression', async () => {
     try {
       await loginScreen.tapOnRegisterLink();
       expect(await registrationScreen.isRegisterScreenDisplayed()).to.be.true;
@@ -125,7 +125,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify user can navigate to Forgot Password page', async () => {
+  it('Verify user can navigate to Forgot Password page  @Smoke @Regression', async () => {
     try {
       await loginScreen.tapForgotPasswordLink();
       expect(await forgotPasswordScreen.isForgotPasswordScreenDisplayed()).to.be.true;

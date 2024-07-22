@@ -33,7 +33,7 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('verify Registration of user is Successful', async () => {
+  it('verify Registration of user is Successful  @Smoke @Regression ', async () => {
     await homeScreen.tapProfileButton();
     await profileScreen.tapOnRegisterButton();
     await registrationScreen.registerNewUser(registerUserCredential.fullName, registerUserCredential.email, registerUserCredential.password, registerUserCredential.confirmPassword, registerUserCredential.mobileNumber);
