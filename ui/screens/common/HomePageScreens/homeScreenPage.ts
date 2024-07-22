@@ -79,7 +79,7 @@ export class HomeScreen extends BaseScreen {
   }
 
   async profileTabButtonElement(): Promise<Element<'async'>> {
-    return this.getElement(XpathUtil.getXpath(this.driver, this.selectors.profileTabButton));
+    return this.getElement(this.selectors.profileTabButton.ios);
   }
 
   async getWelcomeTextElement(): Promise<Element<'async'>> {

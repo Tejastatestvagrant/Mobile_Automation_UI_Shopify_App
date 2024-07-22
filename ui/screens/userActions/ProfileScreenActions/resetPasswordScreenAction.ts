@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, ResetPasswordScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, ResetPasswordScreen } from '../../../../uiExport';
 
 export class ResetPasswordScreenActions extends BaseScreen {
   resetPasswordScreen: ResetPasswordScreen;
@@ -21,29 +21,40 @@ export class ResetPasswordScreenActions extends BaseScreen {
     await this.resetPasswordScreen.tapResetPasswordButton();
   }
 
-  checkNewPasswordError(): Promise<boolean> {
-    return this.resetPasswordScreen.isNewPasswordErrorDisplayed();
+  async getPasswordEmptyErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.passwordFieldEmptyErrorMsgEle();
+    return this.getText(error);
   }
 
-  checkConfirmPasswordError(): Promise<boolean> {
-    return this.resetPasswordScreen.isConfirmPasswordErrorDisplayed();
+  async getPasswordFormatErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.passwordFieldFormatErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getConfirmPasswordEmptyErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.confirmPasswordFieldEmptyErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getConfirmPasswordFormatErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.confirmPasswordFieldFormatErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getConfirmPasswordNotMatchedErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.confirmPasswordNotMatchedErrorMsg();
+    return this.getText(error);
   }
 
   checkSuccessPopup(): Promise<boolean> {
     return this.resetPasswordScreen.isSuccessPopupDisplayed();
   }
 
-  async resetPassword(newPassword: string, confirmPassword: string) {
-    await this.enterNewPassword(newPassword);
-    await this.enterConfirmPassword(confirmPassword);
+  async resetPassword(accountDetails: {newPassword: string, confirmPassword: string }) {
+    await this.enterNewPassword(accountDetails.newPassword);
+    await this.enterConfirmPassword(accountDetails.confirmPassword);
+    await this.hideKeyboard();
     await this.tapResetPasswordButton();
-  }
-
-  async validatePasswordErrors(): Promise<boolean> {
-    const newPasswordError = await this.checkNewPasswordError();
-    const confirmPasswordError = await this.checkConfirmPasswordError();
-
-    return newPasswordError && confirmPasswordError;
   }
 
   async validateSuccessPopup(): Promise<boolean> {

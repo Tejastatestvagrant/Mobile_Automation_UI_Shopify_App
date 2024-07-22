@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, LoginScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, LoginScreen } from '../../../../uiExport';
 
 export class LoginScreenActions extends BaseScreen {
   loginScreen: LoginScreen;
@@ -9,11 +9,7 @@ export class LoginScreenActions extends BaseScreen {
     this.loginScreen = new LoginScreen(driver);
   }
 
-  async login(accountDetails: { username: string; password: string }) {
-    await this.loginScreen.fillLoginDetails(accountDetails);// Adjust the method call as needed
-  }
-
-  async forgotPassword() {
-    await this.loginScreen.tapForgotPasswordLink();
+  async login(accountDetails: { email: string; password: string }) {
+    await this.loginScreen.fillLoginDetails(accountDetails);
   }
 }

@@ -6,11 +6,8 @@ export class ForgotPasswordScreen extends BaseScreen {
     emailInput: { android: "//*[@text='Enter your email']", ios: '~inp-email' },
     submitButton: { android: "//*[@text='Submit']", ios: '~icon-next' },
     forgotPasswordHeader: { ios: '~txt-forgot-password' },
-    emptyEmailField: { ios: '~txt-email-field-cannot-be-empty' },
-    newPasswordInput: { android: "//*[@text='Enter your new password']", ios: '~inp-new-password' },
-    confirmPasswordInput: { android: "//*[@text='Confirm password']", ios: '~inp-confirm-password' },
-    resetPasswordButton: { android: "//*[@text='Reset password']", ios: '~btn-reset-password' },
-    resetpasswordSuccessfull: { ios: "//*[@name='Your password has been reset Successfully'])[5]" },
+    emptyEmailFieldErrorMsg: { ios: '~txt-email-field-cannot-be-empty' },
+    incorrectFormatEmailErrorMsg: { ios: '~txt-email-format-is-incorrect' },
   };
 
   async emailInputEle(): Promise<Element<'async'>> {
@@ -21,12 +18,21 @@ export class ForgotPasswordScreen extends BaseScreen {
     return this.getElement(this.selectors.submitButton.ios);
   }
 
-  async forgotPassworderHeader(): Promise<Element<'async'>> {
+  async forgotPasswordHeader(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.forgotPasswordHeader.ios);
   }
 
-  async emptyEmailEle(): Promise<Element<'async'>> {
-    return this.getElement(this.selectors.emptyEmailField.ios);
+  async emailFieldEmptyErrorMsgEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emptyEmailFieldErrorMsg.ios);
+  }
+
+  async emailIncorrectFormatErrorMsgEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.incorrectFormatEmailErrorMsg.ios);
+  }
+
+  async isForgotPasswordScreenDisplayed(): Promise<boolean> {
+    const res = await this.isDisplayed(this.selectors.emailInput.ios);
+    return res;
   }
 
   async fillForgotPasswordEmail(email: string) {
@@ -34,21 +40,13 @@ export class ForgotPasswordScreen extends BaseScreen {
     await this.click(await this.submitButtonEle());
   }
 
-  async newPasswordInputEle(): Promise<Element<'async'>> {
-    return this.getElement(this.selectors.newPasswordInput.ios);
+  async getEmailFieldEmptyErrorMsg(): Promise<String> {
+    const error = await this.emailFieldEmptyErrorMsgEle();
+    return this.getText(error);
   }
 
-  async confirmPasswordInputEle(): Promise<Element<'async'>> {
-    return this.getElement(this.selectors.confirmPasswordInput.ios);
-  }
-
-  async resetPasswordButtonEle(): Promise<Element<'async'>> {
-    return this.getElement(this.selectors.resetPasswordButton.ios);
-  }
-
-  async fillResetPasswordDetails(passwordDetails: { newPassword: string; confirmPassword: string }) {
-    await this.setValue(await this.newPasswordInputEle(), passwordDetails.newPassword);
-    await this.setValue(await this.confirmPasswordInputEle(), passwordDetails.confirmPassword);
-    await this.click(await this.resetPasswordButtonEle());
+  async getEmailFieldFormatErrorMsg(): Promise<String> {
+    const error = await this.emailIncorrectFormatErrorMsgEle();
+    return this.getText(error);
   }
 }

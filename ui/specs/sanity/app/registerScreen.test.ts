@@ -3,19 +3,17 @@
  */
 
 import { Browser } from 'webdriverio';
-import { expect } from 'chai';
 import {
-  Driver, ProfileScreenAction,
+  Driver, ProfileScreenAction, RegistrationScreenActions,
 } from '../../../../uiExport';
+import { registerUserCredential } from '../../../resources/Constants/constants';
 import { HomeScreenUiValidationAction } from '../../../screens/userActions/HomeScreenActions/homeScreenUiValidationAction';
-// import { OtpVerificationScreen } from '../../../screens/common/ProfileScreens/otpScreen';
-/**
- * Home Page Validation
- */
+
 let driver: Browser<'async'>;
 // let loginActions: LoginScreenActions;
 let homeScreen : HomeScreenUiValidationAction;
 let profileScreen : ProfileScreenAction;
+let registrationScreen :RegistrationScreenActions;
 
 declare let reporter: any;
 const specName = 'Login app validation';
@@ -24,6 +22,7 @@ describe(specName, () => {
     driver = await Driver.getDriver(specName);
     homeScreen = new HomeScreenUiValidationAction(driver);
     profileScreen = new ProfileScreenAction(driver);
+    registrationScreen = new RegistrationScreenActions(driver);
   });
 
   afterEach(async () => {
@@ -34,12 +33,9 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('verify ProfileScreen', async () => {
+  it('verify Registration of user is Successful', async () => {
     await homeScreen.tapProfileButton();
-
-    expect(await profileScreen.isWelcomeTextDisplayed()).to.be.true;
-    expect(await profileScreen.isLogoDisplayed()).to.be.true;
-    expect(await profileScreen.isRegisterButtonDisplayed()).to.be.true;
-    expect(await profileScreen.isLoginButtonDisplayed()).to.be.true;
+    await profileScreen.tapOnRegisterButton();
+    await registrationScreen.registerNewUser(registerUserCredential.fullName, registerUserCredential.email, registerUserCredential.password, registerUserCredential.confirmPassword, registerUserCredential.mobileNumber);
   });
 });

@@ -59,4 +59,19 @@ export class ProfileScreen extends BaseScreen {
     const welcomeText = await this.welcomeTextEle();
     await this.waitForDisplayed(welcomeText);
   }
+
+  async isWelcomeTextDisplayed(): Promise<boolean> {
+    const flag = await this.welcomeTextEle();
+    return this.isDisplayed(flag);
+  }
+
+  async isRegisterButtonPresent(): Promise<boolean> {
+    const flag = await this.registerButtonEle();
+    return this.isDisplayed(flag);
+  }
+
+  async isLoginButtonPresent(): Promise<boolean> {
+    const flag = await this.loginButtonEle();
+    return this.isDisplayed(flag);
+  }
 }

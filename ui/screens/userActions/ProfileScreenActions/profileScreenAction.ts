@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, ProfileScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, ProfileScreen } from '../../../../uiExport';
 
 export class ProfileScreenAction extends BaseScreen {
   profileScreen: ProfileScreen;
@@ -27,6 +27,18 @@ export class ProfileScreenAction extends BaseScreen {
 
   async getWelcomeText(): Promise<string> {
     return this.profileScreen.getWelcomeText();
+  }
+
+  async isWelcomeTextDisplayed(): Promise<boolean> {
+    return this.profileScreen.isWelcomeTextDisplayed();
+  }
+
+  async isRegisterButtonDisplayed(): Promise<boolean> {
+    return this.profileScreen.isRegisterButtonPresent();
+  }
+
+  async isLoginButtonDisplayed(): Promise<boolean> {
+    return this.profileScreen.isLoginButtonPresent();
   }
 
   async waitForProfileScreenLoaded() {

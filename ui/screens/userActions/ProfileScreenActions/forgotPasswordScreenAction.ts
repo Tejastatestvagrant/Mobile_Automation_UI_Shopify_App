@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, ForgotPasswordScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, ForgotPasswordScreen } from '../../../../uiExport';
 
 export class ResetPasswordScreenActions extends BaseScreen {
   forgotPasswordScreen : ForgotPasswordScreen;
@@ -18,7 +18,7 @@ export class ResetPasswordScreenActions extends BaseScreen {
   }
 
   async isForgotPasswordTextDisplayed(): Promise<boolean> {
-    const forgotPasswordText = await this.forgotPasswordScreen.forgotPassworderHeader();
+    const forgotPasswordText = await this.forgotPasswordScreen.forgotPasswordHeader();
     return this.forgotPasswordScreen.isDisplayed(forgotPasswordText);
   }
 

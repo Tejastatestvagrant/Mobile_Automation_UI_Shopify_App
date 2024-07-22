@@ -1,20 +1,24 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, RegistrationScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, RegistrationScreen } from '../../../../uiExport';
+import OtpScreenAction from './otpScreenAction';
 
 export class RegistrationScreenActions extends BaseScreen {
   registrationScreen: RegistrationScreen;
+
+  otpScreen : OtpScreenAction;
 
   constructor(driver: Browser<'async'>) {
     super(driver);
     this.registrationScreen = new RegistrationScreen(driver);
   }
 
-  async registerNewUser(fullName: string, email: string, password: string, mobileNumber: string) {
+  async registerNewUser(fullName: string, email: string, password: string, confirmPassword :string, mobileNumber: string) {
     await this.registrationScreen.enterFullName(fullName);
     await this.registrationScreen.enterEmail(email);
     await this.registrationScreen.enterPassword(password);
     await this.registrationScreen.enterConfirmPassword(password);
     await this.registrationScreen.enterMobileNumber(mobileNumber);
+    await this.registrationScreen.tapRegisterHeader();
     await this.registrationScreen.tapRegisterButton();
   }
 
@@ -30,7 +34,15 @@ export class RegistrationScreenActions extends BaseScreen {
   }
 
   async tapBackButton() {
-    await this.registrationScreen.tapBackButton();
+    await this.registrationScreen.tapBackbutton();
+  }
+
+  async tapRegisterHeader() {
+    await this.registrationScreen.tapRegisterHeader();
+  }
+
+  async tapOnFullNameButton() {
+    await this.registrationScreen.tapOnFullName();
   }
 
   async tapProfileIcon() {

@@ -3,10 +3,10 @@ import { BaseScreen } from '../../../../uiExport';
 
 export class OtpVerificationScreen extends BaseScreen {
   private selectors = {
-    otpInputOne: { ios: '~inp-opt-1' },
-    otpInputTwo: { ios: '~inp-opt-2' },
-    otpInputThree: { ios: '~inp-opt-3' },
-    otpInputFour: { ios: '~inp-opt-4' },
+    otpInputOne: { android: "//*[@text='Resend again']", ios: '~inp-opt-1' },
+    otpInputTwo: { android: "//*[@text='Resend again']", ios: '~inp-opt-2' },
+    otpInputThree: { android: "//*[@text='Resend again']", ios: '~inp-opt-3' },
+    otpInputFour: { android: "//*[@text='Resend again']", ios: '~inp-opt-4' },
     resendOtpLink: { android: "//*[@text='Resend again']", ios: '~lnk-resend-otp' },
     verifyButton: { android: "//*[@text='Verify']", ios: '~btn-verify' },
     backButton: { ios: '~btn-back' },
@@ -40,13 +40,26 @@ export class OtpVerificationScreen extends BaseScreen {
     return this.getElement(this.selectors.backButton.ios);
   }
 
+  async isOtpScreenDisplayed(): Promise<boolean> {
+    const screen = await this.otpInputFourEle();
+    return this.isDisplayed(screen);
+  }
+
   async fillOtp(otp: string) {
     const digits = otp.split('');
-    await this.setValue(await this.otpInputOneEle(), digits[0]);
+    await this.setValue(await this.otpInputOneEle(), '0');
     await this.setValue(await this.otpInputTwoEle(), digits[1]);
     await this.setValue(await this.otpInputThreeEle(), digits[2]);
     await this.setValue(await this.otpInputFourEle(), digits[3]);
     await this.click(await this.verifyButtonEle());
+  }
+
+  async tapOnFirstOtp() {
+    await this.click(await this.otpInputOneEle());
+  }
+
+  async tapOnSecondOtp() {
+    await this.click(await this.otpInputOneEle());
   }
 
   async tapResendOtpLink() {

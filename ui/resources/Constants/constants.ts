@@ -10,3 +10,16 @@ export const HomeScreenConstants = {
   EmptyCartText: 'Your Cart is Empty!!',
   TrackText: 'Log in to view and track your orders.',
 };
+export const registerUserCredential = {
+  fullName: 'Chaha_user',
+  email: 'user@example.com',
+  password: '12345',
+  confirmPassword: '12345',
+  mobileNumber: '1234567890',
+  otp: '0000',
+};
+
+export const loginUserCredential = {
+  email: 'ulshopify@ultralesson.com',
+  password: '12345',
+};
