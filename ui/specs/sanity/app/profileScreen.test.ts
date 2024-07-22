@@ -37,9 +37,9 @@ describe(specName, () => {
   it('verify ProfileScreen', async () => {
     await homeScreen.tapProfileButton();
 
-    expect(await profileScreen.isWelcomeTextDisplayed).to.be.true;
-    expect(await profileScreen.isLogoDisplayed).to.be.true;
-    expect(await profileScreen.isRegisterButtonDisplayed).to.be.true;
-    expect(await profileScreen.isLoginButtonDisplayed).to.be.true;
+    expect(await profileScreen.isWelcomeTextDisplayed()).to.be.true;
+    expect(await profileScreen.isLogoDisplayed()).to.be.true;
+    expect(await profileScreen.isRegisterButtonDisplayed()).to.be.true;
+    expect(await profileScreen.isLoginButtonDisplayed()).to.be.true;
   });
 });

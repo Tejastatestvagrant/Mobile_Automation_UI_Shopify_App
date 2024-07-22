@@ -12,6 +12,7 @@ export class RegistrationScreen extends BaseScreen {
     passwordInput: { android: "//android.widget.EditText[@content-desc='Password']", ios: '~inp-password' },
     confirmPasswordInput: { android: "//android.widget.EditText[@content-desc='Confirm password']", ios: '~inp-confirm-password' },
     mobileNumberInput: { android: "//android.widget.EditText[@content-desc='Mobile number']", ios: '~inp-mobile-number' },
+    mobileNumberLabelText: { ios: '~label-mobile-number' },
     registerButton: { android: "//android.widget.Button[@text='Register']", ios: '~btn-register' },
     loginLink: { android: "//android.widget.TextView[@text='Login']", ios: '~btn-login' },
     emptyFullName: { android: "//android.widget.TextView[@text='Full name cannot be empty']", ios: '~txt-full-name-cannot-be-empty' },
@@ -96,6 +97,10 @@ export class RegistrationScreen extends BaseScreen {
     return this.getElement(this.selectors.emptyConfirmPassword.ios);
   }
 
+  async mobileNumberLabelTextEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.mobileNumberLabelText.ios);
+  }
+
   async enterFullName(fullName: string) {
     const fullNameInput = await this.fullNameInputEle();
     await this.setValue(fullNameInput, fullName);
@@ -119,6 +124,8 @@ export class RegistrationScreen extends BaseScreen {
   async enterMobileNumber(mobileNumber: string) {
     const mobileNumberInput = await this.mobileNumberInputEle();
     await this.setValue(mobileNumberInput, mobileNumber);
+    const mobileNumberLabel = await this.mobileNumberLabelTextEle();
+    await this.click(mobileNumberLabel);
   }
 
   async tapRegisterHeader() {

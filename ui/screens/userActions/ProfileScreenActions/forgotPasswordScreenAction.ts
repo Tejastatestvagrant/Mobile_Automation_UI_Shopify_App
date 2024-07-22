@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, ForgotPasswordScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, ForgotPasswordScreen } from '../../../../uiExport';
 
 export class ResetPasswordScreenActions extends BaseScreen {
   forgotPasswordScreen : ForgotPasswordScreen;

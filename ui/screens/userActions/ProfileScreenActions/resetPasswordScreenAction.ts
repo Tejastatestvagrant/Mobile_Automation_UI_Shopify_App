@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, ResetPasswordScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, ResetPasswordScreen } from '../../../../uiExport';
 
 export class ResetPasswordScreenActions extends BaseScreen {
   resetPasswordScreen: ResetPasswordScreen;
@@ -19,6 +19,31 @@ export class ResetPasswordScreenActions extends BaseScreen {
 
   async tapResetPasswordButton() {
     await this.resetPasswordScreen.tapResetPasswordButton();
+  }
+
+  async getPasswordEmptyErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.passwordFieldEmptyErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getPasswordFormatErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.passwordFieldFormatErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getConfirmPasswordEmptyErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.confirmPasswordFieldEmptyErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getConfirmPasswordFormatErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.confirmPasswordFieldFormatErrorMsgEle();
+    return this.getText(error);
+  }
+
+  async getConfirmPasswordNotMatchedErrorMsg(): Promise<String> {
+    const error = await this.resetPasswordScreen.confirmPasswordNotMatchedErrorMsg();
+    return this.getText(error);
   }
 
   checkSuccessPopup(): Promise<boolean> {

@@ -1,5 +1,5 @@
 import { Browser } from 'webdriverio';
-import { BaseScreen, LoginScreen } from '../../../../uiExport'; // Adjust the import path as needed
+import { BaseScreen, LoginScreen } from '../../../../uiExport';
 
 export class LoginScreenActions extends BaseScreen {
   loginScreen: LoginScreen;
@@ -10,6 +10,6 @@ export class LoginScreenActions extends BaseScreen {
   }
 
   async login(accountDetails: { email: string; password: string }) {
-    await this.loginScreen.fillLoginDetails(accountDetails);// Adjust the method call as needed
+    await this.loginScreen.fillLoginDetails(accountDetails);
   }
 }
