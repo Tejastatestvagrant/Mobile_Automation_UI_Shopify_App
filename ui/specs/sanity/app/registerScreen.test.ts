@@ -44,7 +44,7 @@ describe(specName, () => {
   });
 
 
-  it('Verify user cannot register without providing details ', async () => {
+  it('Verify user cannot register without providing details  @Regression', async () => {
     try{
 
     await registrationScreen1.tapRegisterButton();
@@ -59,7 +59,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify Registration Screen Details are displayed ', async () => {
+  it('Verify Registration Screen Details are displayed @Smoke @Regression ', async () => {
     try{
     expect( await registrationScreen.getFullNameheader()).to.be.equal(registerDetailsHeader.fullNameHeader);
     expect( await registrationScreen.getEmailheader()).to.be.equal(registerDetailsHeader.emailHeader); 
@@ -72,7 +72,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify error message for invalid email format', async () => {
+  it('Verify error message for invalid email format  @Regression', async () => {
   try{ 
 
     await registrationScreen.registerNewUser(registerUserCredentialWithInvalidEmail.fullName, registerUserCredentialWithInvalidEmail.email, registerUserCredentialWithInvalidEmail.password, registerUserCredentialWithInvalidEmail.confirmPassword, registerUserCredentialWithInvalidEmail.mobileNumber);
@@ -83,7 +83,7 @@ describe(specName, () => {
   }
  });
 
-  it('Verify error message for mismatched passwords', async () => {
+  it('Verify error message for mismatched passwords  @Regression', async () => {
     try{
 
     await registrationScreen.registerNewUser(registerUserCredentialWithPasswordMissMatch.fullName,
@@ -98,7 +98,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify error message for invalid mobile number', async () => {
+  it('Verify error message for invalid mobile number  @Regression', async () => {
     try{
       
     await registrationScreen.registerNewUser(registerUserCredentialWithInvalidNumber.fullName,
@@ -113,7 +113,7 @@ describe(specName, () => {
     }
   });
 
-  it('Verify error message for password less than 5 characters', async () => {
+  it('Verify error message for password less than 5 characters  @Regression', async () => {
     try{
       
     await registrationScreen.registerNewUser(registerUserCredentialWithMinPassword.fullName,
