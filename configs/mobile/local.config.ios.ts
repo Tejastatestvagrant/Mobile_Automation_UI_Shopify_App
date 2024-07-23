@@ -29,7 +29,7 @@ export const LocalConfigIos = {
   capabilities: {
     'appium:app': apkFilePath,
     platformName: 'iOS',
-    'appium:deviceName': 'iPhone 14 Plus',
+    'appium:deviceName': 'iphone 14 plus',
     'appium:platformVersion': '17.5',
     'appium:automationName': 'XCUITest',
     'appium:orientation': 'PORTRAIT',

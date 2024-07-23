@@ -53,7 +53,7 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('Verify user cannot Proceed with null credentials', async () => {
+  it('Verify user cannot Proceed with null credentials  @Smoke @Regression ', async () => {
     await resetPasswordScreenAction.tapResetPasswordButton();
     const passwordError = await resetPasswordScreenAction.getPasswordEmptyErrorMsg();
     const confirmPassError = await resetPasswordScreenAction.getConfirmPasswordEmptyErrorMsg();
@@ -61,7 +61,7 @@ describe(specName, () => {
     expect(confirmPassError).to.be.equal('Confirm password field cannot be empty');
   });
 
-  it('Verify user cannot Proceed with null credentials', async () => {
+  it('Verify user cannot Proceed with null credentials  @Smoke ', async () => {
     const accountDetails = { newPassword: '', confirmPassword: '' };
     await resetPasswordScreenAction.resetPassword(accountDetails);
     const passwordError = await resetPasswordScreenAction.getPasswordFormatErrorMsg();
@@ -70,20 +70,20 @@ describe(specName, () => {
     expect(confirmPassError).to.be.equal('Confirm password field cannot be empty');
   });
 
-  it('Verify user cannot Proceed with invalid Format credentials', async () => {
+  it('Verify user cannot Proceed with invalid Format credentials  @Smoke  ', async () => {
     const accountDetails = { newPassword: 'T', confirmPassword: '' };
     await resetPasswordScreenAction.resetPassword(accountDetails);
     expect(await resetPasswordScreenAction.getPasswordFormatErrorMsg()).to.be.equal('Password should be minimum of 5 characters');
     expect(await resetPasswordScreenAction.getConfirmPasswordNotMatchedErrorMsg()).to.be.equal('Confirm password is not matched with password');
   });
 
-  it('Verify user cannot Proceed with new and confirm password not matches ', async () => {
+  it('Verify user cannot Proceed with new and confirm password not matches @Smoke @Regression', async () => {
     const accountDetails = { newPassword: 'Password', confirmPassword: 'password' };
     await resetPasswordScreenAction.resetPassword(accountDetails);
     expect(await resetPasswordScreenAction.getConfirmPasswordNotMatchedErrorMsg()).to.be.equal('Confirm password is not matched with password');
   });
 
-  it('Verify user can Proceed with valid Password', async () => {
+  it('Verify user can Proceed with valid Password  @Smoke @Regression', async () => {
     const accountDetails = { newPassword: 'Password', confirmPassword: 'Password' };
     await resetPasswordScreenAction.resetPassword(accountDetails);
     expect(await resetPasswordScreenAction.validateSuccessPopup()).to.be.equal(true);
