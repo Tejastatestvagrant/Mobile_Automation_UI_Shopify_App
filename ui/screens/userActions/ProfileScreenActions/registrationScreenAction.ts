@@ -16,7 +16,7 @@ export class RegistrationScreenActions extends BaseScreen {
     await this.registrationScreen.enterFullName(fullName);
     await this.registrationScreen.enterEmail(email);
     await this.registrationScreen.enterPassword(password);
-    await this.registrationScreen.enterConfirmPassword(password);
+    await this.registrationScreen.enterConfirmPassword(confirmPassword);
     await this.registrationScreen.enterMobileNumber(mobileNumber);
     await this.registrationScreen.tapRegisterHeader();
     await this.registrationScreen.tapRegisterButton();
@@ -60,9 +60,17 @@ export class RegistrationScreenActions extends BaseScreen {
   async getEmailError(): Promise<string> {
     return this.registrationScreen.getEmailError();
   }
+  
+  async getEmailFormatInvalid(): Promise<string> {
+    return this.registrationScreen.getEmailFormatError();
+  }
 
   async getPasswordError(): Promise<string> {
     return this.registrationScreen.getPasswordError();
+  }
+  
+  async getEmptyConfirmPasswordError(): Promise<string> {
+    return this.registrationScreen.getEmptyConfrimPasswordError();
   }
 
   async getConfirmPasswordError(): Promise<string> {
@@ -72,7 +80,10 @@ export class RegistrationScreenActions extends BaseScreen {
   async getMobileNumberError(): Promise<string> {
     return this.registrationScreen.getMobileNumberError();
   }
-
+  
+  async getEmptyMobileNumberError(): Promise<string> {
+    return this.registrationScreen.getEmptyMobileNumberError();
+  }
   async isFullNameErrorDisplayed(): Promise<boolean> {
     return this.registrationScreen.isFullNameErrorDisplayed();
   }
@@ -95,5 +106,30 @@ export class RegistrationScreenActions extends BaseScreen {
 
   async tapLoginLink() {
     await this.registrationScreen.tapLoginLink();
+  }
+
+  async getFullNameheader(): Promise<string> {
+    const header = await this.registrationScreen.fullNameLabelTextEle();
+    return this.getText(header);
+  }
+
+  async getEmailheader(): Promise<string> {
+    const header = await this.registrationScreen.emailLabelTextEle();
+    return this.getText(header);
+  }
+
+  async getPasswordheader(): Promise<string> {
+    const header = await this.registrationScreen.passwordLabelTextEle();
+    return this.getText(header);
+  }
+
+  async getConfirmPasswordheader(): Promise<string> {
+    const header = await this.registrationScreen.confirmPasswordLabelTextEle();
+    return this.getText(header);
+  }
+
+  async getMobileNumberheader(): Promise<string> {
+    const header = await this.registrationScreen.mobileNumberLabelTextEle();
+    return this.getText(header);
   }
 }
