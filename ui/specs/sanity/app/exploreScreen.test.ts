@@ -30,20 +30,20 @@ describe(specName, () => {
     await Driver.closeDrivers([driver]);
   });
 
-  it('verify Verify Search with Empty Keyword', async () => {
+  it('verify Verify Search with Empty Keyword @Smoke', async () => {
     expect(await exploreScreen.isExploreScreenDisplayed()).to.be.true;
     await exploreScreen.enterSearchQuery('');
     await exploreScreen.tapSearchIcon();
     expect(await exploreScreen.isErrorMessageDisplayed()).to.be.true;
   });
 
-  it('Verify Search special characters', async () => {
+  it('Verify Search special characters @Smoke', async () => {
     await exploreScreen.enterSearchQuery('#');
     await exploreScreen.tapSearchIcon();
     expect(await exploreScreen.isNoProductMessageDisplayed()).to.be.true;
   });
 
-  it('Verify more button in the suggestion list', async () => {
+  it('Verify more button in the suggestion list @Smoke @Regression', async () => {
     await exploreScreen.enterSearchQuery('hi');
     expect(await exploreScreen.isMoreButtonDisplayed()).to.be.true;
     expect(await exploreScreen.getSuggestionListElementCount()).to.be.equal(3);
@@ -51,7 +51,7 @@ describe(specName, () => {
     expect(await exploreScreen.getSuggestionListElementCount()).to.greaterThan(3);
   });
 
-  it('Verify product displayed with valid search query', async () => {
+  it('Verify product displayed with valid search query @Smoke @Regression', async () => {
     await exploreScreen.enterSearchQuery('High-Fidelity Headphones');
     expect(await exploreScreen.getSuggestedProductName()).to.be.equal('High-Fidelity Headphones');
   });

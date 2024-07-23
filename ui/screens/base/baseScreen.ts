@@ -86,7 +86,7 @@ export class BaseScreen {
   /**
    * get text of element
    * @param element pass webelement or locator string
-   */
+  */
   async getText(element: string): Promise<string>;
 
   async getText(element: Element<'async'>): Promise<string>;
