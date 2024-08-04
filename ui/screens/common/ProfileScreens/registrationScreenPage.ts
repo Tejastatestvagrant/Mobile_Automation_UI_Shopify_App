@@ -16,12 +16,20 @@ export class RegistrationScreen extends BaseScreen {
     registerButton: { android: "//android.widget.Button[@text='Register']", ios: '~btn-register' },
     loginLink: { android: "//android.widget.TextView[@text='Login']", ios: '~btn-login' },
     emptyFullName: { android: "//android.widget.TextView[@text='Full name cannot be empty']", ios: '~txt-full-name-cannot-be-empty' },
+    emptyEmail:{ios:'~txt-email-field-cannot-be-empty'},
+    emptyPassword :{ios:'~txt-password-field-cannot-be-empty'},
+    emptyConfirmPassword: { ios: '~txt-confirm-password-field-cannot-be-empty' },
     emailError: { android: "//android.widget.TextView[@text='Email field cannot be empty']", ios: '~txt-email-format-is-incorrect' },
     passwordError: { android: "//android.widget.TextView[@text='Password field cannot be empty']", ios: '~txt-password-should-be-minimum-of-5-characters' },
     confirmPasswordError: { android: "//android.widget.TextView[@text='Confirm password field cannot be empty']", ios: '~txt-confirm-password-is-not-matched-with-password' },
     mobileNumberError: { android: "//android.widget.TextView[@text='Mobile number cannot be empty']", ios: '~txt-mobile-number-should-be-10-digits' },
-    emptyEmail: { ios: '~txt-email-field-cannot-be-empty' },
-    emptyConfirmPassword: { ios: '~txt-confirm-password-field-cannot-be-empty' },
+   emptyMobileNumber :{ios:'~txt-mobile-number-cannot-be-empty'},
+   fullNameHeader :{ios:'~label-full-name'},
+   emailHeader:{ios:'~label-email'},
+   passwordHeader:{ios:'~label-password'},
+   cofirmPasswordheader:{ios:'~label-confirm-password'},
+   mobileNumberHeader:{ios:'~label-mobile-number'},
+
     errorMessagePopup: { ios: '~' },
   };
 
@@ -52,11 +60,18 @@ export class RegistrationScreen extends BaseScreen {
   async confirmPasswordInputEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.confirmPasswordInput.ios);
   }
+  
 
+  async emptyconfirmPasswordInputEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emptyConfirmPassword.ios);
+  }
   async mobileNumberInputEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.mobileNumberInput.ios);
   }
-
+  
+  async emptymobileNumberInputEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emptyMobileNumber.ios);
+  }
   async registerButtonEle(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.registerButton.ios);
   }
@@ -78,7 +93,7 @@ export class RegistrationScreen extends BaseScreen {
   }
 
   async confirmPasswordErrorEle(): Promise<Element<'async'>> {
-    return this.getElement(this.selectors.emptyConfirmPassword.ios);
+    return this.getElement(this.selectors.confirmPasswordError.ios);
   }
 
   async mobileNumberErrorEle(): Promise<Element<'async'>> {
@@ -87,6 +102,9 @@ export class RegistrationScreen extends BaseScreen {
 
   async emptyEmailError(): Promise<Element<'async'>> {
     return this.getElement(this.selectors.emptyEmail.ios);
+  }
+  async emailFormatError(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emailError.ios);
   }
 
   async registerHeader(): Promise<Element<'async'>> {
@@ -98,9 +116,24 @@ export class RegistrationScreen extends BaseScreen {
   }
 
   async mobileNumberLabelTextEle(): Promise<Element<'async'>> {
-    return this.getElement(this.selectors.mobileNumberLabelText.ios);
+    return this.getElement(this.selectors.mobileNumberHeader.ios);
   }
 
+async fullNameLabelTextEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.fullNameHeader.ios);
+  }
+
+  async emailLabelTextEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.emailHeader.ios);
+  }
+  async passwordLabelTextEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.passwordHeader.ios);
+  }
+
+  async confirmPasswordLabelTextEle(): Promise<Element<'async'>> {
+    return this.getElement(this.selectors.cofirmPasswordheader.ios);
+  }
+  
   async enterFullName(fullName: string) {
     const fullNameInput = await this.fullNameInputEle();
     await this.setValue(fullNameInput, fullName);
@@ -177,19 +210,28 @@ export class RegistrationScreen extends BaseScreen {
     const errorElement = await this.emailErrorEle();
     return this.getText(errorElement);
   }
+  
 
+  async getEmailFormatError(): Promise<string> {
+    const errorElement = await this.emailFormatError();
+    return this.getText(errorElement);
+  }
   async getPasswordError(): Promise<string> {
     const errorElement = await this.passwordErrorEle();
     return this.getText(errorElement);
   }
-
+  
+  async getEmptyPasswordError(): Promise<string> {
+    const errorElement = await this.emptyConfirmPasswordError();
+    return this.getText(errorElement);
+  }
   async getConfirmPasswordError(): Promise<string> {
     const errorElement = await this.confirmPasswordErrorEle();
     return this.getText(errorElement);
   }
 
   async getEmptyConfrimPasswordError(): Promise<string> {
-    const errorElement = await this.emailErrorEle();
+    const errorElement = await this.emptyconfirmPasswordInputEle();
     return this.getText(errorElement);
   }
 
@@ -197,7 +239,11 @@ export class RegistrationScreen extends BaseScreen {
     const errorElement = await this.mobileNumberErrorEle();
     return this.getText(errorElement);
   }
-
+  
+  async getEmptyMobileNumberError(): Promise<string> {
+    const errorElement = await this.emptymobileNumberInputEle();
+    return this.getText(errorElement);
+  }
   async isRegisterScreenDisplayed(): Promise<boolean> {
     const screen = await this.registerButtonEle();
     return this.isDisplayed(screen);
@@ -256,4 +302,6 @@ export class RegistrationScreen extends BaseScreen {
       return false;
     }
   }
+
+  
 }
